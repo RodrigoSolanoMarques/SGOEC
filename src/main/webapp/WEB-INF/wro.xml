@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<groups xmlns="http://www.isdc.ro/wro"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.isdc.ro/wro">
+
+  <group name="commun">
+    <css>/static/css/bootstrap.min.css</css>
+    <js>/static/js/bootstrap.min.js</js>
+    <js>/static/js/bootstrap3/jquery-2.2.4.min.js</js>
+    <js>/static/js/bootstrap3/npm.js</js>
+  </group>
+  
+  <group name="login">
+    <css>/static/css/login.css</css>
+    <js>/static/js/login.js</js>
+  </group>
+  
+</groups> 
