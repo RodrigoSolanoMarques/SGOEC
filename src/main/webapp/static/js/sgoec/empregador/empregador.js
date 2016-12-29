@@ -80,6 +80,7 @@ $(function(){
 	empregador.classCelular.mask('(00) 00000-0000');
 	
 	$(".data").datetimepicker({format: "DD/MM/YYYY"});
+	$(".data").mask('dd/MM/yyyy')
 	
 	ajaxEmpregador.listar();
 })

@@ -29,8 +29,7 @@
 												
 												<div class="panel panel-default" style="margin-bottom: 6px">
 													<div class="panel-body">
-														<img id="imagem" name="imagem" class="img-thumbnail"
-															src="/static/img/nan.jpg">
+														<img id="imagem" name="imagem" class="img-thumbnail" src="/static/img/nan.jpg">
 													</div>
 												</div>
 												<input type="file" id="foto" name="foto" style="display:  none">

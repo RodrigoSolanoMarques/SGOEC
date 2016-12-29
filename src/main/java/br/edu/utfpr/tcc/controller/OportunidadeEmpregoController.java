@@ -63,8 +63,8 @@ public class OportunidadeEmpregoController {
 		ContaUsuario contaUsuario = (ContaUsuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Empregador empregador = empregadorRepository.findByContaUsuario(contaUsuario);
 		
-		model.addObject("empresa", empregador.getCargo().getEmpresa().getNomeFantasia());
-		model.addObject("empregador", empregador.getPessoa().getNome());
+		model.addObject("empresa", empregador.getCargo().getEmpresa());
+		model.addObject("empregador", empregador);
 		
 		return model;
 	}

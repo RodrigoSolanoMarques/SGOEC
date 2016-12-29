@@ -34,11 +34,11 @@ $(function(){
 	  $('[data-toggle="tooltip"]').tooltip()
 	});
 	
-	contaUsuario.$foto.change(function(){
-		debugger;
-		contaUsuario.$nomeFoto.text(contaUsuario.$foto.val());
-		// Aqui para fazer um preview
-	});
+//	contaUsuario.$foto.change(function(){
+//		debugger;
+//		contaUsuario.$nomeFoto.text(contaUsuario.$foto.val());
+//		// Aqui para fazer um preview
+//	});
 	
 	contaUsuario.$btnFoto.click( function() {
 		contaUsuario.$foto.click();

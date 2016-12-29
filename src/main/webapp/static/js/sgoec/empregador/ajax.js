@@ -6,10 +6,12 @@ var ajaxEmpregador = {
 		$.getJSON("/empresa/contaUsuario/alterar", {id: Empregador.contaUsuario.id},function(data){
 			debugger;
 			putResultVal(data, empregador.$modalFormCadastrarContaUsuario);
-			empregador.$imagem.attr("src","/imagens/" + data.id + "/"+ data.id + ".jpg");
+			//empregador.$imagem.attr("src","/imagens/" + data.id + "/"+ data.id + ".jpg");
 			
 			if( (data != null) && (data.id != null) && (data.id > 0)){
-				contaUsuario.$imagem.attr('src', data.pathImagem);
+				if(data.pathImagem != null && data.pathImagem != ""){
+					contaUsuario.$imagem.attr('src', data.pathImagem);
+				}
 				
 				contaUsuario.$username.attr('readonly', true);
 				contaUsuario.$senha.attr('readonly', true);
@@ -31,13 +33,13 @@ var ajaxEmpregador = {
 	},
 	
 	salvar: function(Empregador){
-//		$.post("/empresa/empregador/salvar", Empregador, function(data){
-//			debugger;
-//			empregador.modalLimparFormCadastrarEmpregador();
-//			empregador.modalHideCadastroEmpregador();
-//			empregador.$tableEmpregadores.bootstrapTable("refresh");
-//			hideCarregando();
-//		});
+		$.post("/empresa/empregador/salvar", Empregador, function(data){
+			debugger;
+			empregador.modalLimparFormCadastrarEmpregador();
+			empregador.modalHideCadastroEmpregador();
+			empregador.$tableEmpregadores.bootstrapTable("refresh");
+			hideCarregando();
+		});
 
 	},
 	
