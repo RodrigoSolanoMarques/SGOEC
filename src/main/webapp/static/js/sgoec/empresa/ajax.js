@@ -41,7 +41,6 @@ var ajaxEmpresa = {
 			url : '/empresa/listar',
 			pageSize : 5,
 			pageList : [ 5, 10, 25, 50, 100 ],
-			
 			icons : {
 				refresh : 'fa fa-refresh',
 				toggle : 'fa fa-th-list',

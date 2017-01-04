@@ -42,13 +42,6 @@ public class EmpresaController {
 		model.addObject("listaCidade", cidadeRepository.findByEstado(new Estado(1L)));
 		return model;
 	}
-
-//	@GetMapping("/cadastrar")
-//	public ModelAndView cadastrar(){
-//		ModelAndView model = new ModelAndView("/empresa/cadastros-basicos/cadastro-empresa");
-//		
-//		return model;
-//	}
 	
 	@PostMapping("/salvar")
 	public Empresa salvar(Empresa empresa){				

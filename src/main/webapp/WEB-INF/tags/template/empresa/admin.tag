@@ -11,16 +11,16 @@
 <title>SGOEC</title>
 <link rel="stylesheet"
 	href="<c:url value="/static/css/bootstrap/bootstrap.min.css"/>">
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="<c:url value="/static/css/semantic/semantic.min.css"/>">
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="<c:url value="/static/css/font-awesome/font-awesome.min.css"/>">
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="<c:url value="/static/css/jquery-loading-modal/jquery-loading-modal.min.css"/>">
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="<c:url value="/static/css/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css"/>">
 
-	<jsp:invoke fragment="cssEspecificos"></jsp:invoke>
+<jsp:invoke fragment="cssEspecificos"></jsp:invoke>
 </head>
 <body>
 	<header>
@@ -43,11 +43,10 @@
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li class=""><a href="/empresa/index">Inicio</a></li>
-						
+
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Cadastros Básicos<span
-								class="caret"></span></a>
+							aria-expanded="false">Cadastros Básicos<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="/empresa/cargo/">Cargo</a></li>
 								<li><a href="/cidade/">Cidade</a></li>
@@ -55,26 +54,26 @@
 								<li><a href="/empresa/">Empresa</a></li>
 								<li><a href="/estado/">Estado</a></li>
 							</ul></li>
-						
+
+						<!-- 						<li class="dropdown"><a href="#" class="dropdown-toggle" -->
+						<!-- 							data-toggle="dropdown" role="button" aria-haspopup="true" -->
+						<!-- 							aria-expanded="false">Oportunidade de Emprego <span -->
+						<!-- 								class="caret"></span></a> -->
+						<!-- 							<ul class="dropdown-menu"> -->
+						<!-- 								<li><a href="/empresa/oportundadeemprego/cadastrar">Cadastrar</a></li> -->
+						<!-- 								<li><a href="/empresa/oportundadeemprego/">Listar</a></li> -->
+						<!-- 							</ul></li> -->
+						<li><a href="/empresa/oportundadeemprego/">Oportunidade
+								de Emprego</a></li>
+
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Oportunidade de Emprego <span
-								class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="/empresa/oportundadeemprego/cadastrar">Cadastrar</a></li>
-								<li><a href="/empresa/oportundadeemprego/">Listar</a></li>
-							</ul></li>
-							
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Candidato <span
-								class="caret"></span></a>
+							aria-expanded="false">Candidato <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="/empresa/candidato/favoritos">Favoritos</a></li>
-								<li><a
-									href="/empresa/candidato/listar">Listar</a></li>
+								<li><a href="/empresa/candidato/listar">Listar</a></li>
 							</ul></li>
-						
+
 						<li class="dropdown"><a class="dropdown-toggle" href="#"
 							data-toggle="dropdown">Curriculo <b class="caret"></b></a>
 							<ul class="dropdown-menu">
@@ -95,7 +94,7 @@
 
 	<!-- Conteúdo da Página -->
 	<jsp:doBody />
-	
+
 
 	<footer class="footer">
 		<hr />
@@ -127,13 +126,18 @@
 		</div>
 	</footer>
 
-	<script type="text/javascript" src="/static/js/jquery/jquery-2.2.4.min.js"></script>
-	<script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/static/js/semantic/semantic.min.js"></script>
-	<script type="text/javascript" src="/static/js/jquery-loading-modal/jquery-loading-modal.min.js"></script>
+	<script type="text/javascript"
+		src="/static/js/jquery/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript"
+		src="/static/js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="/static/js/semantic/semantic.min.js"></script>
+	<script type="text/javascript"
+		src="/static/js/jquery-loading-modal/jquery-loading-modal.min.js"></script>
 	<script type="text/javascript" src="/static/js/moment/moment.js"></script>
-	<script type="text/javascript" src="/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
-	
+	<script type="text/javascript"
+		src="/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+
 	<jsp:invoke fragment="scriptsEspecificos"></jsp:invoke>
 </body>
 </html>

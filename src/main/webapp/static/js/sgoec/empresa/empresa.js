@@ -32,7 +32,6 @@ var empresa = {
 	modalLimparFormCadastrarEmpresa: function(){
 		empresa.$modalFormCadastrarEmpresa[0].reset();
 		cidade.carregarCidadePorEstado(cidade.classEstado.val());
-		
 	},
 	
 	cadastrar: function(){
