@@ -16,6 +16,7 @@ import br.edu.utfpr.tcc.repository.CargoRepository;
 import br.edu.utfpr.tcc.repository.CidadeRepository;
 import br.edu.utfpr.tcc.repository.EmpregadorRepository;
 import br.edu.utfpr.tcc.repository.EstadoRepository;
+import br.edu.utfpr.tcc.repository.PermissaoRepository;
 
 @RestController
 @RequestMapping(value="/empresa/empregador")
@@ -33,6 +34,9 @@ public class EmpregadorController {
 	@Autowired
 	CargoRepository cargoRepository;
 	
+	@Autowired
+	PermissaoRepository permissaoRepository;
+	
 	@GetMapping
 	public ModelAndView home(){	
 		ModelAndView model = new ModelAndView("/empresa/cadastros-basicos/lista-empregadores");
@@ -40,6 +44,7 @@ public class EmpregadorController {
 		model.addObject("listaEstado", estadoRepository.findAll());
 		model.addObject("listaCidade", cidadeRepository.findByEstado(new Estado(1L)));
 		model.addObject("listaCargo", cargoRepository.findAll());
+		model.addObject("listaPermissao", permissaoRepository.findAll());
 		
 		return model;
 	}

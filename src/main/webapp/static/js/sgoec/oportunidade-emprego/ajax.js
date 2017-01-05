@@ -25,13 +25,25 @@ var ajaxOportunidadeEmprego = {
 			oportunidadeEmprego.$cargo.prop("disabled", true);
 			
 			if(data.isSalario){
-				oportunidadeEmprego.$isSalario.prop("checked","true");
+				oportunidadeEmprego.$isSalario.prop("checked",true);
+			};
+			
+			if(data.isFinalizado){
+				
+				oportunidadeEmprego.$beneficios.prop("disabled", true);
+				oportunidadeEmprego.$descricao.prop("disabled", true);
+				oportunidadeEmprego.$isFinalizado.prop("checked",true);
+				oportunidadeEmprego.$isFinalizado.prop("disabled",true);
+				oportunidadeEmprego.$labelIsFinalizado.text("Finalizado");
+				oportunidadeEmprego.$labelIsFinalizado.css("color", 'red');
+				oportunidadeEmprego.$btnModalFormSalvarOportunidadeEmprego.hide();
 			};
 			
 			oportunidadeEmprego.$txtSalario.prop("readonly", true);
 			oportunidadeEmprego.$isSalario.prop("disabled", true);
 			
 			
+			oportunidadeEmprego.$btnModalFormLimparOportunidadeEmprego.hide();
 			oportunidadeEmprego.modalShowCadastroOportunidadeEmprego();
 			hideCarregando();
 		});

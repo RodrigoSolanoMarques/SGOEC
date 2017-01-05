@@ -75,7 +75,7 @@
 
 									</div>
 
-									<div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+									<div class="col-xs-12 col-sm-9 col-md-5 col-lg-5">
 										<label for="email" class="">E-mail</label> <input type="email"
 											class="form-control" id="email" name="email"
 											data-toggle="tooltip" data-placement="top"
@@ -83,6 +83,15 @@
 											value="${contaUsuario.email}" required  />
 
 									</div>
+									
+<!-- 									<div class="col-xs-12 col-sm-9 col-md-5 col-lg-5"> -->
+<!-- 										<label for="permissoes">Permissão</label> <select id="permissoes" -->
+<!-- 											name="permissoes" class="form-control" required> -->
+<%-- 											<c:forEach items="${listaPermissao}" var="permissao"> --%>
+<%-- 												<option value="${permissao.id}">${permissao.permissao}</option> --%>
+<%-- 											</c:forEach> --%>
+<!-- 										</select> -->
+<!-- 									</div> -->
 
 								</div>
 								<hr>

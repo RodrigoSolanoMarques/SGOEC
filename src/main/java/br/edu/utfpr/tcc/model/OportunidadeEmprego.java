@@ -36,9 +36,9 @@ public class OportunidadeEmprego {
 	@JoinColumn(name = "idEmpregador", referencedColumnName = "id")
 	private Empregador empregador;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "idAreaProfissional", referencedColumnName = "id")
-	private AreaProfissional areaProfissional;
+//	@OneToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "idAreaProfissional", referencedColumnName = "id")
+//	private AreaProfissional areaProfissional;
 	
 	@Column(length=200, nullable=false)
 	private String descricao;
@@ -54,6 +54,9 @@ public class OportunidadeEmprego {
 	
 	@Column(length=255, nullable=true)
 	private String beneficios;
+	
+	@Column(nullable=true)
+	private Boolean isFinalizado;
 	
 	
 

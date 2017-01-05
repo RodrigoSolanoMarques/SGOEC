@@ -17,6 +17,7 @@ import br.edu.utfpr.tcc.model.ContaUsuario;
 import br.edu.utfpr.tcc.model.Empregador;
 import br.edu.utfpr.tcc.model.Empresa;
 import br.edu.utfpr.tcc.model.Pessoa;
+import br.edu.utfpr.tcc.repository.AreaProfissionalRepository;
 import br.edu.utfpr.tcc.repository.CargoRepository;
 import br.edu.utfpr.tcc.repository.EmpregadorRepository;
 
@@ -30,10 +31,15 @@ public class CargoController {
 	@Autowired
 	EmpregadorRepository empregadorRepository;
 	
+	@Autowired
+	AreaProfissionalRepository areaProfissionalRepository;
+	
 	@GetMapping
 	public ModelAndView home(){	
+		ModelAndView model = new ModelAndView("/empresa/cadastros-basicos/lista-cargos");
+		model.addObject("listaAreaProfissional", areaProfissionalRepository.findAll());
 		
-		return new ModelAndView("/empresa/cadastros-basicos/lista-cargos");
+		return model;
 	}
 
 	@GetMapping("/cadastrar")

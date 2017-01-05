@@ -3,22 +3,22 @@
 <%@ taglib tagdir="/WEB-INF/tags/componentes" prefix="componente"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div class="modal" id="modalCadastroCargo" tabindex="-1" 
-	role="dialog" >
+<div class="modal" id="modalCadastroCargo" tabindex="-1" role="dialog">
 	<div class="modal-dialog " role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-			
-				<button type="button" class="close"
-					aria-label="Close" onclick="cargo.modalHideCadastroCargo();">
+
+				<button type="button" class="close" aria-label="Close"
+					onclick="cargo.modalHideCadastroCargo();">
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<i class="write icon"></i> Cadastrar Cargo
-				
+
 			</div>
 			<div class="modal-body">
 
-				<form id="modalFormCadastrarCargo" class="form-horizontal" method="POST">
+				<form id="modalFormCadastrarCargo" class="form-horizontal"
+					method="POST">
 					<!-- Inicio Informações Básicas -->
 
 					<div class="form-group">
@@ -27,6 +27,19 @@
 								id="id" name="id" placeholder="" readonly="readonly"
 								value="${id}" />
 						</div>
+
+						<div class="col-xs-9 col-sm-10 col-md-10 col-lg-10">
+							<label for="areaProfissional">Area Profissional</label> <select
+								id="areaProfissional" class="form-control"
+								name="areaProfissional.id" data-toggle="tooltip"
+								data-placement="top" title="Escolha uma Area Profissional">
+								<c:forEach items="${listaAreaProfissional}"
+									var="areaProfissional">
+									<option value="${areaProfissional.id}">${areaProfissional.nome}</option>
+								</c:forEach>
+							</select>
+						</div>
+
 					</div>
 
 					<div class="form-group">
@@ -46,9 +59,14 @@
 
 			</div>
 			<div class="modal-footer text-right">
-				<button id="btnModalFormSalvarCargo" type="button" class="btn btn-default" onclick="cargo.modalSalvarFormCadastroCargo()">Salvar</button>
-				<button id="btnModalFormLimparCargo" type="button" class="btn btn-default" onclick="cargo.modalLimparFormCadastrarCargo();">Limpar</button>
-				<button id="btnModalFormCancelarCargo" type="button" class="btn btn-default" onclick="cargo.modalHideCadastroCargo();">Fechar</button>
+				<button id="btnModalFormSalvarCargo" type="button"
+					class="btn btn-default"
+					onclick="cargo.modalSalvarFormCadastroCargo()">Salvar</button>
+				<button id="btnModalFormLimparCargo" type="button"
+					class="btn btn-default"
+					onclick="cargo.modalLimparFormCadastrarCargo();">Limpar</button>
+				<button id="btnModalFormCancelarCargo" type="button"
+					class="btn btn-default" onclick="cargo.modalHideCadastroCargo();">Fechar</button>
 			</div>
 		</div>
 	</div>

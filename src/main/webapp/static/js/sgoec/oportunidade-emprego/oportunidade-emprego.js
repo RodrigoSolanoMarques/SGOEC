@@ -7,8 +7,14 @@ var oportunidadeEmprego = {
 	$cargo: $("#cargo"),
 	$cargaHoraria: $("#cargaHoraria"),
 	$isSalario: $("#isSalario"),
+	$isFinalizado: $("#isFinalizado"),
 	$txtSalario: $("#txtSalario"),
 	$areaProfissional: $("#areaProfissional"),
+	$labelIsFinalizado: $("#labelIsFinalizado"),
+	$beneficios: $("#beneficios"),
+	$descricao: $("#descricao"),
+	$btnModalFormSalvarOportunidadeEmprego: $("#btnModalFormSalvarOportunidadeEmprego"),
+	$btnModalFormLimparOportunidadeEmprego: $("#btnModalFormLimparOportunidadeEmprego"),
 
 	modalLimparFormCadastrarOportunidadeEmprego: function(){
 		oportunidadeEmprego.$modalFormCadastrarOportunidadeEmprego[0].reset();
@@ -23,9 +29,21 @@ var oportunidadeEmprego = {
 		
 		oportunidadeEmprego.$txtSalario.prop("readonly", true);
 		oportunidadeEmprego.$isSalario.prop("disabled", false);
+		
+		oportunidadeEmprego.$labelIsFinalizado.text("Finalizar está Oportunidade de Emprego?");
+		oportunidadeEmprego.$labelIsFinalizado.css("color", 'blue');
+		
+		oportunidadeEmprego.$beneficios.prop("disabled", false);
+		oportunidadeEmprego.$descricao.prop("disabled", false);
+		oportunidadeEmprego.$isFinalizado.prop("checked",false);
+		oportunidadeEmprego.$isFinalizado.prop("disabled",false);
+		
+		oportunidadeEmprego.$btnModalFormSalvarOportunidadeEmprego.show();
+		oportunidadeEmprego.$btnModalFormLimparOportunidadeEmprego.show();
 	},
 	
 	modalSalvarFormCadastroOportunidadeEmprego: function(){
+		debugger
 		showCarregando();
 		ajaxOportunidadeEmprego.salvar(oportunidadeEmprego.$modalFormCadastrarOportunidadeEmprego.serialize())
 		return false;
