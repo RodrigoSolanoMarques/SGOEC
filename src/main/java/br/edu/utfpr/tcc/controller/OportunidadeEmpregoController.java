@@ -83,11 +83,17 @@ public class OportunidadeEmpregoController {
 	@PostMapping("/salvar")
 	public OportunidadeEmprego salvar(OportunidadeEmprego oportunidadeEmprego){
 		
-		if(oportunidadeEmprego.getId() != null && oportunidadeEmprego.getId() > 0){
+		if(oportunidadeEmprego != null && oportunidadeEmprego.getId() > 0){
+			
 			OportunidadeEmprego oportunidadeEmpregoAlterado = oportunidadeEmpregoRepository.findOne(oportunidadeEmprego.getId());
-			oportunidadeEmpregoAlterado.setBeneficios(oportunidadeEmprego.getBeneficios());
-			oportunidadeEmpregoAlterado.setDescricao(oportunidadeEmprego.getDescricao());
-			return oportunidadeEmpregoRepository.save(oportunidadeEmpregoAlterado);
+			
+			if(oportunidadeEmprego.getIsFinalizado()){
+				return oportunidadeEmpregoAlterado;
+			}else{
+				oportunidadeEmpregoAlterado.setBeneficios(oportunidadeEmprego.getBeneficios());
+				oportunidadeEmpregoAlterado.setDescricao(oportunidadeEmprego.getDescricao());
+				return oportunidadeEmpregoRepository.save(oportunidadeEmpregoAlterado);
+			}
 		}else{
 			ContaUsuario contaUsuario = (ContaUsuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			Empregador empregador = empregadorRepository.findByContaUsuario(contaUsuario);

@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.edu.utfpr.tcc.model.AvaliacaoCurriculo;
 import br.edu.utfpr.tcc.model.Candidato;
 import br.edu.utfpr.tcc.model.Curriculo;
+import br.edu.utfpr.tcc.repository.AvaliacaoCurriculoRepository;
 import br.edu.utfpr.tcc.repository.CandidatoRepository;
 import br.edu.utfpr.tcc.repository.CurriculoRepository;
 
@@ -23,6 +25,9 @@ public class CandidatoController {
 	
 	@Autowired
 	CurriculoRepository curriculoRepository;
+	
+	@Autowired
+	AvaliacaoCurriculoRepository avaliacaoCurriculoRepository;
 	
 	@GetMapping(value="/listar")
 	public ModelAndView listar() {
@@ -45,9 +50,9 @@ public class CandidatoController {
 	}
 	
 	@GetMapping(value="/listarCandidatosFavoritos")
-	public List<Curriculo> listarCandidatosFavoritos() {
+	public List<AvaliacaoCurriculo> listarCandidatosFavoritos() {
 		
-		return curriculoRepository.findByCandidatoIsFavoritoIsTrue();
+		return avaliacaoCurriculoRepository.findByIsFavoritoIsTrue();
 	}
 	
 	@GetMapping(value="/carregar")

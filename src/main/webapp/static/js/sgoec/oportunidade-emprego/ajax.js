@@ -1,5 +1,5 @@
 var ajaxOportunidadeEmprego = {
-		
+	
 	salvar: function(OportunidadeEmprego){
 		debugger
 		$.post("/empresa/oportundadeemprego/salvar", OportunidadeEmprego, function(data){
@@ -10,7 +10,7 @@ var ajaxOportunidadeEmprego = {
 			hideCarregando();
 		});
 	},
-	
+
 	alterar: function(OportunidadeEmprego){
 		cidade.carregarCidadePorEstado(OportunidadeEmprego.cidade.estado.id, OportunidadeEmprego.cidade.id);
 		$.getJSON("/empresa/oportundadeemprego/alterar", {id: OportunidadeEmprego.id},function(data){
@@ -42,7 +42,6 @@ var ajaxOportunidadeEmprego = {
 			oportunidadeEmprego.$txtSalario.prop("readonly", true);
 			oportunidadeEmprego.$isSalario.prop("disabled", true);
 			
-			
 			oportunidadeEmprego.$btnModalFormLimparOportunidadeEmprego.hide();
 			oportunidadeEmprego.modalShowCadastroOportunidadeEmprego();
 			hideCarregando();
@@ -71,12 +70,11 @@ var ajaxOportunidadeEmprego = {
 				detailOpen : 'fa fa-plus-circle',
 				detailClose : 'fa fa-minus-circle'
 			},
-			
+
 			onDblClickRow: function(row, $element, field){
 				debugger
 				showCarregando();
 				ajaxOportunidadeEmprego.alterar(row);
-				
 			}
 		});
 		hideCarregando();

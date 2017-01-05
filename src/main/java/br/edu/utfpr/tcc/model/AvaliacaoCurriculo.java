@@ -22,6 +22,8 @@ import lombok.Data;
 @Table
 public class AvaliacaoCurriculo {
 
+	// Essa clase será a classe criado quando o usuário enviar o curriculo
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -34,9 +36,9 @@ public class AvaliacaoCurriculo {
 	@JoinColumn(name = "idCurriculo", referencedColumnName = "id")
 	private Curriculo curriculo;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "idEmpregador", referencedColumnName = "id")
-	private Empregador empregador;
+//	@OneToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "idEmpregador", referencedColumnName = "id")
+//	private Empregador empregador;
 	
 	@Column(nullable=true)
 	private EStatusCurriculo status;
