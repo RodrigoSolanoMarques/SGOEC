@@ -52,7 +52,7 @@ public class CandidatoController {
 	@GetMapping(value="/listarCandidatosFavoritos")
 	public List<AvaliacaoCurriculo> listarCandidatosFavoritos() {
 		
-		return avaliacaoCurriculoRepository.findByIsFavoritoIsTrue();
+		return avaliacaoCurriculoRepository.findByFavoritoTrue();
 	}
 	
 	@GetMapping(value="/carregar")

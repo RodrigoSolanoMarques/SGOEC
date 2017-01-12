@@ -36,15 +36,11 @@ public class AvaliacaoCurriculo {
 	@JoinColumn(name = "idCurriculo", referencedColumnName = "id")
 	private Curriculo curriculo;
 	
-//	@OneToOne(fetch = FetchType.EAGER)
-//	@JoinColumn(name = "idEmpregador", referencedColumnName = "id")
-//	private Empregador empregador;
-	
 	@Column(nullable=true)
 	private EStatusCurriculo status;
 	
 	@Column(nullable=false)
-	private Boolean isFavorito;
+	private Boolean favorito;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataCurriculoEnviado;

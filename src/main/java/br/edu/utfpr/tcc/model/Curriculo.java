@@ -27,14 +27,6 @@ public class Curriculo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-//	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "idOportunidadeEmprego", referencedColumnName = "id")
-//	private OportunidadeEmprego oportunidadeEmprego;
-	
-//	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "idEmpregador", referencedColumnName = "id")
-//	private Empregador empregador;
-	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idCandidato", referencedColumnName = "id")
 	private Candidato candidato;
@@ -66,7 +58,7 @@ public class Curriculo {
 	@Column(length=200,nullable=true)
 	private String conhecimentosInformatica;	
 	
-	@OneToOne(mappedBy = "curriculo")
-    private AvaliacaoCurriculo avaliacaoCurriculo;
+	/*@OneToOne(mappedBy = "curriculo")
+    private AvaliacaoCurriculo avaliacaoCurriculo;*/
 
 }

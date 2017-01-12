@@ -58,10 +58,10 @@
 											data-formatter="nomeCompletoFormatter" data-align="center">Nome</th>
 				            	<th data-field="curriculo.candidato.titulacao"
 											data-align="center">Titulação</th>
-				            	<th data-field="curriculo.oportunidadeEmprego.cargo.nome"
+				            	<th data-field="oportunidadeEmprego.cargo.nome"
 											data-align="center">Oportunidade de Emprego</th>
 				            	<th data-field="curriculo.id"
-											data-formatter="isCurriculoFormatter" data-align="center">Currículo</th>
+											data-formatter="isCurriculoFormatter" data-events="operateEvents" data-align="center">Currículo</th>
 				            	<th data-field="curriculo.candidato.isFavorito"
 											data-formatter="isFavoritoFormatter" data-align="center">Favorito</th>
 				            </tr>

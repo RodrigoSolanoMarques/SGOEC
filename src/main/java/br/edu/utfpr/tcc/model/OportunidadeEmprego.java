@@ -28,17 +28,9 @@ public class OportunidadeEmprego {
 	@JoinColumn(name = "idCargo", referencedColumnName = "id")
 	private Cargo cargo;
 	
-//	@ManyToOne(fetch = FetchType.EAGER)
-//	@JoinColumn(name = "idEmpresa", referencedColumnName = "id")
-//	private Empresa empresa;
-	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idEmpregador", referencedColumnName = "id")
 	private Empregador empregador;
-	
-//	@OneToOne(fetch = FetchType.EAGER)
-//	@JoinColumn(name = "idAreaProfissional", referencedColumnName = "id")
-//	private AreaProfissional areaProfissional;
 	
 	@Column(length=200, nullable=false)
 	private String descricao;
