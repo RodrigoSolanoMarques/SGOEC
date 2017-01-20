@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib tagdir="/WEB-INF/tags/template/empresa" prefix="template"%>
 <%@ taglib tagdir="/WEB-INF/tags/componentes" prefix="componente"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="modal scroll" id="modalAvaliarCurriculo" tabindex="-1"
 	role="dialog">
-	<div class="modal-dialog modal-80">
+	<div class="modal-dialog modal-80" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 
 				<button type="button" class="close" aria-label="Close"
-					
-					aria-label="Close" onclick="candidatos.modalHideAvaliarCurriculo();">
+					aria-label="Close" onclick="curriculo.modalHideAvaliarCurriculo();">
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<i class="write icon"></i> Avaliação de Currículo
@@ -40,8 +39,8 @@
 												<div class="content">
 
 													<img class="right floated mini ui image"
-														src="/static/img/star-full.png">
-													<div class="header"><label id="modalPerfilNome" name="candidatopessoa.nome">Nome do Candidato</label></div>
+														src="/static/img/star-full.png"/>
+													<div class="header"><label id="modalPerfilNome" name="candidato.pessoa.nome">Nome do Candidato</label></div>
 <!-- 													<div class="meta"><label name="idade">X Anos</label></div> -->
 													<div class="meta"><label id="modalPerfilCidade" name="candidato.pessoa.cidade.nome">Cidade -</label><label id="modalPerfilEstado" name="candidato.pessoa.cidade.estado.nome"> UF</label></div>
 													<div class="description"><label id="modalPerfilTitulacao" name="titulacao">Titulação</label></div>
@@ -117,3 +116,4 @@
 		</div>
 	</div>
 </div>
+
