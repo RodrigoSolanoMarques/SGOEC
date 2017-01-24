@@ -22,6 +22,9 @@ public class ExperienciaProfissional {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(nullable=true)
+	private Integer idMobile;
+	
 //	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //	@JoinColumn(name = "idCurriculo", referencedColumnName = "id")
 //	private Curriculo curriculo;

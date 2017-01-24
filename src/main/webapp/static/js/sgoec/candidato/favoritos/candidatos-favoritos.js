@@ -42,7 +42,8 @@ function isCurriculoFormatter(value, row) {
 window.operateEvents = {
         'click .visualizar': function (e, value, row) {
         	debugger
-        	curriculo.modalShowAvaliarCurriculo();
+        	showCarregando();
+        	ajaxCurriculo.carregar();
         },
     };
 

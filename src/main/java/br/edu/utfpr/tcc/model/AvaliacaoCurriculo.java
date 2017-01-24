@@ -42,13 +42,13 @@ public class AvaliacaoCurriculo {
 	@Column(nullable=false)
 	private Boolean favorito;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCurriculoEnviado;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataEntrevista;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataEncerramento;
 	
 }

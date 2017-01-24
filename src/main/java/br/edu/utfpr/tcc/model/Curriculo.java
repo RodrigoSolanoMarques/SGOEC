@@ -1,6 +1,7 @@
 package br.edu.utfpr.tcc.model;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,19 +36,19 @@ public class Curriculo {
 	@JoinTable(name="CurriculoFormacao",joinColumns =
 	{@JoinColumn(name = "idCurriculo")}, inverseJoinColumns =
 	{@JoinColumn(name = "idFormacao")})
-	private List<Formacao> formacoes;
+	private Set<Formacao> formacoes;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="CurriculoCursoComplementar",joinColumns =
 	{@JoinColumn(name = "idCurriculo")}, inverseJoinColumns =
 	{@JoinColumn(name = "idCursoComplementar")})
-	private List<CursoComplementar> cursoComplementares;
+	private Set<CursoComplementar> cursoComplementares;
 	
 	@ManyToMany
-	@JoinTable(name="CurriculoExperienciaProfissional",joinColumns =
-	{@JoinColumn(name = "idCurriculo")}, inverseJoinColumns =
-	{@JoinColumn(name = "idExperienciaProfissional")})
-	private List<ExperienciaProfissional> experienciasProfissionais;
+	@JoinTable(name="CurriculoExperienciaProfissional",
+	joinColumns = @JoinColumn(name = "idCurriculo", referencedColumnName = "id"), 
+	inverseJoinColumns = @JoinColumn(name = "idExperienciaProfissional", referencedColumnName = "id"))
+	private Set<ExperienciaProfissional> experienciasProfissionais;
 	
 	@Column(length=100, nullable=false)
 	private String objetivoAreaAtuar;

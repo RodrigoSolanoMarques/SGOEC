@@ -68,6 +68,7 @@ public class Pessoa {
 	@Column(length=255, nullable=true)
 	private String complemento;
 	
-	
+	@Column(length=255, nullable=true)
+	private String foto;
 
 }
