@@ -52,7 +52,6 @@ public class ContaUsuarioController {
 	public ContaUsuario alterar(@RequestParam(value = "id", required = true) Long id) {
 
 		ContaUsuario contaUsuario = contaUsuarioRepository.findOne(id);
-		contaUsuario.setSenha(null);
 		return contaUsuario;
 	}
 
@@ -100,6 +99,9 @@ public class ContaUsuarioController {
 
 	// Salvar Generico para os tipos de Roles
 	public ContaUsuario salvar(ContaUsuario contaUsuario, ERole role, HttpServletRequest request, MultipartFile foto) {
+		
+		ContaUsuario contaUsuarioSalvar = contaUsuarioRepository.findOne(contaUsuario.getId());
+		
 		String encodedPassword = contaUsuario.getEncodedPassword(contaUsuario.getPassword());
 
 		contaUsuario.setSenha(encodedPassword);

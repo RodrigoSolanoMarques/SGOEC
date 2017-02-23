@@ -2,15 +2,13 @@
 
 var candidatosFavoritos = {
 	$modalAvaliarCurriculo: $('#modalAvaliarCurriculo'),
-	
 };
 
 /*====================================================
 ****************** Carregar Tela *********************
 ====================================================*/
 $(function(){
-	debugger
-	ajaxCandidatos.listarCandidatosFavoritos();
+	ajaxCandidatosFavoritos.listar();
 });
 
 /*====================================================
@@ -41,9 +39,7 @@ function isCurriculoFormatter(value, row) {
 ====================================================*/
 window.operateEvents = {
         'click .visualizar': function (e, value, row) {
-        	debugger
-        	showCarregando();
-        	ajaxCurriculo.carregar();
+        	curriculo.carregarAvaliacaoCurriculo(row);
         },
     };
 

@@ -2,12 +2,14 @@ package br.edu.utfpr.tcc.enumerator;
 
 public enum EStatusCurriculo {
 
-	APROVADO(1),
-	REPROVADO(2),
-	AGUARDANDO(3),
-	AVALIADO(4),
-	LISTAFAVORITOS(5),
-	LISTAESPERA(6);
+	APROVADO(0),
+	DISPENSADO(1),
+	AGUARDANDOAVALIACAO(2),
+	AVALIADO(3),
+	LISTAFAVORITOS(4),
+	LISTAESPERA(5),
+	ENTREVISTAMARCADA(6),
+	SOLICITOUCURRICULO(7);
 	
 	public Integer status;
 	

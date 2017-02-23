@@ -50,6 +50,13 @@ public class OportunidadeEmprego {
 	@Column(nullable=true)
 	private Boolean isFinalizado;
 	
+	public OportunidadeEmprego(){
+	}
+	
+	public OportunidadeEmprego(Long id){
+		this.id = id;
+	}
+	
 	
 
 }

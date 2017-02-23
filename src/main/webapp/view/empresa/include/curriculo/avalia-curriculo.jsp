@@ -34,24 +34,25 @@
 
 											<div class="ui centered card">
 												<div class="image">
-													<img src="/static/img/nan.jpg">
+													<img id="modalAvaliarCurriculoFoto" src="/static/img/nan.jpg">
 												</div>
 												<div class="content">
 
-													<img class="right floated mini ui image"
-														src="/static/img/star-full.png"/>
-													<div class="header"><label id="modalPerfilNome" name="candidato.pessoa.nome">Nome do Candidato</label></div>
-<!-- 													<div class="meta"><label name="idade">X Anos</label></div> -->
-													<div class="meta"><label id="modalPerfilCidade" name="candidato.pessoa.cidade.nome">Cidade -</label><label id="modalPerfilEstado" name="candidato.pessoa.cidade.estado.nome"> UF</label></div>
-													<div class="description"><label id="modalPerfilTitulacao" name="titulacao">Titulação</label></div>
+													<img id="modalAvaliarCurriculoIsFavorito" class="right floated mini ui image" src="/static/img/star-empty.png"/>
+													<div class="header"><label id="modalAvaliarCurriculoNome" name="curriculo.candidato.pessoa.nome">Nome do Candidato</label></div>
+ 													<div class="header"><label id="modalAvaliarCurriculoSobrenome" name="curriculo.candidato.pessoa.sobrenome">Nome do Candidato</label></div>
+													<div class="meta"><label id="modalAvaliarCurriculoCidade" name="curriculo.candidato.pessoa.cidade.nome">Cidade</label><label>&nbsp-&nbsp</label><label id="modalPerfilEstado" name="curriculo.candidato.pessoa.cidade.estado.uf"> UF</label></div>
+													<div class="meta"><label id="modalAvaliarCurriculoIdade">Idade</label>&nbsp<label>Anos</label></div>
+													<div class="description"><label>Titulação:&nbsp</label><label id="modalAvaliarCurriculoTitulacao" name="curriculo.candidato.titulacao">Nome Titulação</label></div>
+													
 												</div>
 												<div class="extra content">
 													<div class="large ui two buttons">
-														<div class="ui toggle green button">
+														<div id="btnAprovar" class="ui toggle green button" onclick="curriculo.btnAprovar()">
 															<i class="thumbs outline up icon"></i>Aprovado
 														</div>
-														<div class="ui toggle red button">
-															<i class="thumbs outline down icon"></i>Reprovado
+														<div id="btnDispensar" class="ui toggle red button" onclick="curriculo.btnDispensar()">
+															<i class="thumbs outline down icon"></i>Dispensar
 														</div>
 													</div>
 												</div>
@@ -67,8 +68,8 @@
 											<hr />
 										</div>
 										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-											<button class="large fluid ui toggle teal button">
-												<i class="add user icon"></i> Lista de Candidatos Favoritos
+											<button id="btnListaCandidatosFavoritos" class="large fluid ui toggle teal button" onclick="curriculo.btnListaCandidatosFavoritos()">
+												<i class="add user icon"></i>Adicionar aos Favoritos
 											</button>
 										</div>
 										<div
@@ -77,9 +78,8 @@
 											<hr />
 										</div>
 										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-											<button class="large fluid ui toggle teal button">
-												<i class="remove user icon"></i> Lista de Candidatos
-												Favoritos
+											<button id="btnListaEspera" class="large fluid ui toggle teal button" onclick="curriculo.btnListaEspera()">
+												<i class="remove user icon"></i> Remover dos Favoritos
 											</button>
 										</div>
 										<div
@@ -87,9 +87,9 @@
 											
 											<hr />
 										</div>
-										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-											<button class="large fluid ui toggle teal button">
-												<i class="send icon"></i> Pedir Currículo
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" onclick="curriculo.btnPedirCurriculo()">
+											<button id="btnSolicitarCurriculo" class="large fluid ui toggle teal button">
+												<i class="send icon"></i> Solicitar Currículo
 											</button>
 										</div>
 
@@ -103,6 +103,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading text-center">Currículo</div>
 								<div class="panel-body text-center">Sem Currículo</div>
+<!-- 								<iframe src="/empresa/curriculo/curriculoCanditadoPdf" width="600" height="780" style="border: none;"></iframe> -->
 							</div>
 
 						</div>
@@ -111,7 +112,7 @@
 				</div>
 			</div>
 			<div class="modal-footer text-right">
-				<button id="btnModalFormSalvarCargo" type="button" class="btn btn-default" onclick="candidatos.modalHideAvaliarCurriculo()">Cancelar</button>
+				<button id="btnModalFormSalvarCargo" type="button" class="btn btn-default" onclick="curriculo.modalHideAvaliarCurriculo()">Fechar</button>
 			</div>
 		</div>
 	</div>

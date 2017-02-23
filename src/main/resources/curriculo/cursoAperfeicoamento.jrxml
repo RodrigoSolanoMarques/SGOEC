@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-01-31T23:50:15 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cursoAperfeicoamento" pageWidth="595" pageHeight="100" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="690f842d-d115-40e1-9e14-4229f64e3792">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC Sgoec Data Adapter"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="Y3VycmljdWxvX2N1cnNvX2NvbXBsZW1lbnRhciAsMTUsMTY0LDllZTY0ZDBhLTRhM2QtNGUzNC05&#xA;ZDFlLTQ2NDYxYTQ3YzQzZjtjdXJyaWN1bG8gLDIyNywxNSwzNTU2MDk2Zi03OTkzLTRhZWYtOWNi&#xA;My01OTA1ZDE5Njg4NmU7Y3Vyc29fY29tcGxlbWVudGFyICwyMjcsMjEwLDUwNjdjNzBiLThkZGMt&#xA;NDhjYy1iYzYwLTVjNmE0ZjAzNGFmYjs="/>
+	<parameter name="CURRICULO_ID" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[new Long(1)]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT curso_complementar.data_final,
+	curso_complementar.data_inicial,
+	curso_complementar.is_concluido,
+	curso_complementar.nome_curso,
+	curso_complementar.instituicao,
+	curso_complementar.id
+FROM curriculo_curso_complementar
+	INNER JOIN curriculo ON 
+	 curriculo_curso_complementar.id_curriculo = curriculo.id 
+	INNER JOIN curso_complementar ON 
+	 curriculo_curso_complementar.id_curso_complementar = curso_complementar.id 
+WHERE 
+	 curriculo.id = $P{CURRICULO_ID}]]>
+	</queryString>
+	<field name="data_final" class="java.sql.Date"/>
+	<field name="data_inicial" class="java.sql.Date"/>
+	<field name="is_concluido" class="java.lang.Boolean"/>
+	<field name="nome_curso" class="java.lang.String"/>
+	<field name="instituicao" class="java.lang.String"/>
+	<field name="id" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="595" height="17" uuid="995c44f2-aa7e-4cd4-a1cd-ddbae9d7be91"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Curso de Aperfeiçoamento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="61" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="0" y="0" width="595" height="61" uuid="96c6dbc6-5963-4325-bbb8-795bcaf5050d"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Curso: " + $F{nome_curso} + "\n" +
+"Instituição: " + $F{instituicao} + "\n" +
+($F{data_inicial}  != null  
+	? 	"Data: " + ($F{is_concluido}  == true   
+						? 	"Data Inicial: " + $F{data_inicial} + "\n"+	"Data Final: " +$F{data_final} 
+						:   "Cursando desde " + 	$F{data_inicial} 
+						)
+		+ "\n" + ($F{is_concluido}  == true ? "Concluído" : "Incompleto")
+	:   ($F{is_concluido}  == true ? "Concluído" : "Incompleto")
+)]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

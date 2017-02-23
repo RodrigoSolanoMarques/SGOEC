@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.edu.utfpr.tcc.enumerator.EStatusCurriculo;
 import br.edu.utfpr.tcc.model.AvaliacaoCurriculo;
 import br.edu.utfpr.tcc.model.Candidato;
 import br.edu.utfpr.tcc.model.Curriculo;
@@ -36,12 +37,6 @@ public class CandidatoController {
 		return model;
 	}
 	
-	@GetMapping(value="/listarCandidatos")
-	public List<Curriculo> listarCandidatos() {
-		
-		return curriculoRepository.findAll();
-	}
-	
 	@GetMapping(value="/favoritos")
 	public ModelAndView favoritos() {
 		ModelAndView model = new ModelAndView("/empresa/candidato/lista-candidatos-favoritos");
@@ -49,10 +44,15 @@ public class CandidatoController {
 		return model;
 	}
 	
+	@GetMapping(value="/listarCandidatos")
+	public List<AvaliacaoCurriculo> listarCandidatos() {
+		
+		return avaliacaoCurriculoRepository.findByStatusIsNotIn(EStatusCurriculo.DISPENSADO);
+	}
+
 	@GetMapping(value="/listarCandidatosFavoritos")
 	public List<AvaliacaoCurriculo> listarCandidatosFavoritos() {
-		
-		return avaliacaoCurriculoRepository.findByFavoritoTrue();
+		return avaliacaoCurriculoRepository.findByFavoritoTrueAndStatusIsNotIn(EStatusCurriculo.DISPENSADO);
 	}
 	
 	@GetMapping(value="/carregar")

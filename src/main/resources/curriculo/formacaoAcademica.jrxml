@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-01-31T23:58:27 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="formacaoAcademica" pageWidth="595" pageHeight="100" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="bbe10645-e33a-4579-b4dc-45f1ab498922">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC Sgoec Data Adapter"/>
+	<property name="net.sf.jasperreports.print.create.bookmarks" value="false"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="Y3VycmljdWxvX2Zvcm1hY2FvICwxNSwxNjQsYTkwYTNiNGQtM2MzMS00NDIyLWJjMzUtNGU3OGNl&#xA;ZTJhOWY4O2N1cnJpY3VsbyAsMTY2LDE1LDE4M2E4Y2NhLWNhMGQtNDY1Mi05ZDU1LTRjMWIzNGQx&#xA;OTgwNjtmb3JtYWNhbyAsMTY2LDIxMCxkOTAxNjk3My05YjJkLTRkMDMtYjVmZi1mZWE3NmNkYzNm&#xA;MGE7"/>
+	<parameter name="CURRICULO_ID" class="java.lang.Long">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new Long(1)]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT formacao.data_final AS formacao_data_final,
+	formacao.data_inicial AS formacao_data_inicial,
+	formacao.instituicao AS formacao_instituicao,
+	formacao.is_concluido AS formacao_is_concluido,
+	formacao.nome_curso AS formacao_nome_curso
+FROM curriculo_formacao
+	INNER JOIN curriculo ON 
+	 curriculo_formacao.id_curriculo = curriculo.id 
+	INNER JOIN formacao ON 
+	 curriculo_formacao.id_formacao = formacao.id 
+WHERE 
+	 curriculo.id = $P{CURRICULO_ID}]]>
+	</queryString>
+	<field name="formacao_data_final" class="java.sql.Date"/>
+	<field name="formacao_data_inicial" class="java.sql.Date"/>
+	<field name="formacao_instituicao" class="java.lang.String"/>
+	<field name="formacao_is_concluido" class="java.lang.Boolean"/>
+	<field name="formacao_nome_curso" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="17">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="0" y="0" width="595" height="17" uuid="4861162e-0c48-4aad-8a72-fa6d86fc02e1">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Formação Acadêmica]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="61" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="0" y="0" width="595" height="61" uuid="5e8b1e29-4716-4062-8f17-c99e8c76f23e"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Curso: " + $F{formacao_nome_curso} + "\n" +
+"Instituição: " + $F{formacao_instituicao} + "\n" +
+($F{formacao_data_inicial}  != null  
+	? 	"Data: " + ($F{formacao_is_concluido}  == true   
+						? 	"Data Inicial: " + $F{formacao_data_inicial} + "\n"+	"Data Final: " +$F{formacao_data_final} 
+						:   "Cursando desde " + 	$F{formacao_data_inicial} 
+						)
+		+ "\n" + ($F{formacao_is_concluido}  == true ? "Concluído" : "Incompleto")
+	:   ($F{formacao_is_concluido}  == true ? "Concluído" : "Incompleto")
+)]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

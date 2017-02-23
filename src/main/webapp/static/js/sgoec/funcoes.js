@@ -154,7 +154,7 @@ function getDate() {
 // RESULT => VALORES QUE VEM DO SERVIDOR
 // ELEID => ID DO FORM ONDE SERÁ COLOCADO OS VALORES
 function putResultVal(result, eleid) {
-    $(eleid).find("input, select, textarea").each(function () {
+    $(eleid).find("input, select, textarea, label").each(function () {
         putObjcValue(result, $(this));
     });
 }
@@ -170,12 +170,23 @@ function putObjcValue(result, ele) {
 	    }
 
 	    try {
-	        ele.val(eval("result" + value));
+	    	
+	    	if(ele.get(0).localName == 'label'){
+	    		ele.text(eval("result" + value));
+	    	}else{
+	    		ele.val(eval("result" + value));
+	    	}
+	        
 	    } catch (e) {
 	        ele.val("");
 	    }
 	}
 
+}
+
+function calcularIdade(dataNascimento){
+	dataNascimento = new Date(dataNascimento);
+	return new Date().getYear() - dataNascimento.getYear()
 }
 
 function showCarregando(){

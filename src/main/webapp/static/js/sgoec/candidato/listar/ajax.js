@@ -54,10 +54,10 @@ var ajaxCandidatos = {
 
 	listarCandidatosFavoritos : function() {
 		debugger
-		$.ajax({
-			type : "GET",
-			url : '/empresa/candidato/listarCandidatosFavoritos',
-			success : function(data) {
+//		$.ajax({
+//			type : "GET",
+//			url : '/empresa/candidato/listarCandidatosFavoritos',
+//			success : function(data) {
 				$('#tableFavoritosCandidatos').bootstrapTable({
 					toolbar : ".toolbar",
 					showRefresh : true,
@@ -67,7 +67,8 @@ var ajaxCandidatos = {
 					pagination : true,
 					striped : true,
 					sortable : true,
-					data : data,
+					url: '/empresa/candidato/listarCandidatosFavoritos',
+					//data : data,
 					pageSize : 2,
 					pageList : [ 2, 10, 25, 50, 100 ],
 
@@ -87,12 +88,12 @@ var ajaxCandidatos = {
 						detailClose : 'fa fa-minus-circle'
 					}
 				});
-			},
-			error : function(err) {
-				console.log(err)
-				alert('Erro');
-			}
-		})
+//			},
+//			error : function(err) {
+//				console.log(err)
+//				alert('Erro');
+//			}
+//		})
 	}
 
 }

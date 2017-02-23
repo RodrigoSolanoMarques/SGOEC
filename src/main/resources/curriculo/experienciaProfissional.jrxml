@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-01-31T23:58:17 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="experienciaProfissional" pageWidth="595" pageHeight="100" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isSummaryWithPageHeaderAndFooter="true" uuid="6ef067d8-ac87-409f-86cf-f8c8ca39a854">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC Sgoec Data Adapter"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="CURRICULO_ID" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[new Long(1)]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT ep.id,
+	ep.cargo,
+	ep.atividades,
+	ep.data_final,
+	ep.data_inicial,
+	ep.is_atual,
+	ep.nome_empresa
+FROM curriculo_experiencia_profissional cep
+	INNER JOIN experiencia_profissional ep ON 
+	 cep.id_experiencia_profissional = ep.id 
+WHERE 
+	 cep.id_curriculo = $P{CURRICULO_ID}]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="cargo" class="java.lang.String"/>
+	<field name="atividades" class="java.lang.String"/>
+	<field name="data_final" class="java.sql.Date"/>
+	<field name="data_inicial" class="java.sql.Date"/>
+	<field name="is_atual" class="java.lang.Boolean"/>
+	<field name="nome_empresa" class="java.lang.String"/>
+	<columnHeader>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="595" height="17" uuid="6e859ef9-8d95-4a7c-9ce3-f457b826452b"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Experiência Profissional:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="595" height="60" uuid="2de1bd06-d51c-403f-a5d6-bdb079504d77"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Empresa: " + $F{nome_empresa} +"\nCargo: " + $F{cargo} + "\n"+
+"Período: " + ($F{is_atual} == true ? "Atuando desde de " + $F{data_inicial} : $F{data_inicial} + " até " + $F{data_final}) + "\n" + 
+"Atividades: " + $F{atividades}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

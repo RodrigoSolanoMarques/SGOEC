@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import br.edu.utfpr.tcc.enumerator.EStatusCurriculo;
 import lombok.Data;
@@ -42,12 +45,15 @@ public class AvaliacaoCurriculo {
 	@Column(nullable=false)
 	private Boolean favorito;
 	
+	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCurriculoEnviado;
 	
+	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataEntrevista;
 	
+	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataEncerramento;
 	

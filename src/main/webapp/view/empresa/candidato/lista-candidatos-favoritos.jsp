@@ -21,7 +21,7 @@
 		<script type="text/javascript" src="/static/js/sgoec/cidade/ajax.js"></script>
 		<script type="text/javascript" src="/static/js/sgoec/cidade/cidade.js"></script>
 		<script type="text/javascript" src="/static/js/sgoec/candidato/favoritos/candidatos-favoritos.js"></script>
-		<script type="text/javascript" src="/static/js/sgoec/candidato/listar/ajax.js"></script>
+		<script type="text/javascript" src="/static/js/sgoec/candidato/favoritos/ajax.js"></script>
 		<script type="text/javascript" src="/static/js/sgoec/curriculo/curriculo.js"></script>
 		<script type="text/javascript" src="/static/js/sgoec/curriculo/ajax.js"></script>
 		<script type="text/javascript" src="/static/js/jquery-mask/jquery.mask.min.js"></script>
@@ -54,7 +54,7 @@
 				            	<th data-field="curriculo.id"
 											data-formatter="isCurriculoFormatter"
 											data-events="operateEvents" data-align="center">Currículo</th>
-				            	<th data-field="curriculo.candidato.isFavorito"
+				            	<th data-field="favorito"
 											data-formatter="isFavoritoFormatter" data-align="center">Favorito</th>
 				            </tr>
 				            </thead>
