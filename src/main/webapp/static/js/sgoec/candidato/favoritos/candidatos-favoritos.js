@@ -2,6 +2,7 @@
 
 var candidatosFavoritos = {
 	$modalAvaliarCurriculo: $('#modalAvaliarCurriculo'),
+	$tableFavoritosCandidatos: $('#tableFavoritosCandidatos'),
 };
 
 /*====================================================

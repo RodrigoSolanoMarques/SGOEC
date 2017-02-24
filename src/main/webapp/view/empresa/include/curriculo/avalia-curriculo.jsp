@@ -87,7 +87,7 @@
 											
 											<hr />
 										</div>
-										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" onclick="curriculo.btnPedirCurriculo()">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" onclick="curriculo.btnSolicitarCurriculo()">
 											<button id="btnSolicitarCurriculo" class="large fluid ui toggle teal button">
 												<i class="send icon"></i> Solicitar Currículo
 											</button>

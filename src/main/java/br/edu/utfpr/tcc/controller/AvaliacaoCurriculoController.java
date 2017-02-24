@@ -1,6 +1,7 @@
 package br.edu.utfpr.tcc.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,13 +15,17 @@ import br.edu.utfpr.tcc.model.AvaliacaoCurriculo;
 import br.edu.utfpr.tcc.model.Curriculo;
 import br.edu.utfpr.tcc.model.OportunidadeEmprego;
 import br.edu.utfpr.tcc.repository.AvaliacaoCurriculoRepository;
+import br.edu.utfpr.tcc.repository.OportunidadeEmpregoRepository;
 
 @RestController
 @RequestMapping(value = "/empresa/avaliacaoCurriculo")
 public class AvaliacaoCurriculoController {
 	
 	@Autowired
-	private AvaliacaoCurriculoRepository avaliacaoCurriculoController;
+	private AvaliacaoCurriculoRepository avaliacaoCurriculoRepository;
+	
+	@Autowired
+	private OportunidadeEmpregoRepository oportunidadeEmpregoRepository;
 
 	@PostMapping("/salvar")
 	public AvaliacaoCurriculo salvar(@RequestParam(name = "idCurriculo", required = true)Long idCurriculo, 
@@ -31,53 +36,71 @@ public class AvaliacaoCurriculoController {
 		avaliacaoCurriculo.setDataCurriculoEnviado(new Date());
 		avaliacaoCurriculo.setStatus(EStatusCurriculo.AGUARDANDOAVALIACAO);
 	
-		return avaliacaoCurriculoController.save(avaliacaoCurriculo);
+		return avaliacaoCurriculoRepository.save(avaliacaoCurriculo);
 	}
 	
 	@PostMapping("/aprovar")
-	public void aprovar(@RequestParam(name = "idAvaliacaoCurriculo", required = true)Long idAvaliacaoCurriculo){		
-		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoController.findOne(idAvaliacaoCurriculo);
+	public void aprovar(@RequestParam(name = "idAvaliacaoCurriculo", required = true)Long idAvaliacaoCurriculo){
+		/* Recupera a AvaliacaoCurriculo para mudar o status para aprovado */
+		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoRepository.findOne(idAvaliacaoCurriculo);
 		avaliacaoCurriculo.setStatus(EStatusCurriculo.APROVADO);
-		System.out.println(" Deu certo");
+		avaliacaoCurriculoRepository.save(avaliacaoCurriculo);
+		
+		/* FInaliza a Oportunidade de Emprego */
+		OportunidadeEmprego oportunidadeEmprego = oportunidadeEmpregoRepository.findOne(avaliacaoCurriculo.getOportunidadeEmprego().getId());
+		oportunidadeEmprego.setIsFinalizado(true);
+		oportunidadeEmpregoRepository.save(oportunidadeEmprego);
+		
+		/* Exclui todas as avaliações de currículos vinculadas a essa oportunidade de emprego */
+		List<AvaliacaoCurriculo> listaAvaliacaoCurriculo = avaliacaoCurriculoRepository.findByIdIsNotIn(avaliacaoCurriculo.getId());
+		avaliacaoCurriculoRepository.delete(listaAvaliacaoCurriculo);
+		
 	}
 	
 	@PostMapping("/favoritar")
 	public void favoritar(@RequestParam(name = "idAvaliacaoCurriculo", required = true)Long idAvaliacaoCurriculo){		
-		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoController.findOne(idAvaliacaoCurriculo);
+		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoRepository.findOne(idAvaliacaoCurriculo);
 		avaliacaoCurriculo.setFavorito(true);
 		avaliacaoCurriculo.setStatus(EStatusCurriculo.LISTAFAVORITOS);
+		avaliacaoCurriculoRepository.save(avaliacaoCurriculo);
 	}
 	
 	@PostMapping("/marcarEntrevista")
 	public void marcarEntrevista(@RequestParam(name = "idAvaliacaoCurriculo", required = true)Long idAvaliacaoCurriculo,
 			@RequestParam(name = "dataEntrevista", required = true)Date dataEntrevista){		
-		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoController.findOne(idAvaliacaoCurriculo);
+		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoRepository.findOne(idAvaliacaoCurriculo);
 		avaliacaoCurriculo.setDataEntrevista(dataEntrevista);
 		avaliacaoCurriculo.setStatus(EStatusCurriculo.ENTREVISTAMARCADA);
+		avaliacaoCurriculoRepository.save(avaliacaoCurriculo);
 	}
 	
 	@PostMapping("/dispensar")
 	public void encerrar(@RequestParam(name = "idAvaliacaoCurriculo", required = true)Long idAvaliacaoCurriculo){		
-		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoController.findOne(idAvaliacaoCurriculo);
+		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoRepository.findOne(idAvaliacaoCurriculo);
 		avaliacaoCurriculo.setDataEncerramento(new Date());
 		avaliacaoCurriculo.setStatus(EStatusCurriculo.DISPENSADO);
+		avaliacaoCurriculoRepository.save(avaliacaoCurriculo);
 	}
 	
 	@PostMapping("/avaliado")
 	public void avaliado(@RequestParam(name = "idAvaliacaoCurriculo", required = true)Long idAvaliacaoCurriculo){		
-		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoController.findOne(idAvaliacaoCurriculo);
+		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoRepository.findOne(idAvaliacaoCurriculo);
 		avaliacaoCurriculo.setStatus(EStatusCurriculo.AVALIADO);
+		avaliacaoCurriculoRepository.save(avaliacaoCurriculo);
 	}
 	
-	@PutMapping("/listaEspera")
+	@PostMapping("/listaEspera")
 	public void listaEspera(@RequestParam(name = "idAvaliacaoCurriculo", required = true)Long idAvaliacaoCurriculo){		
-		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoController.findOne(idAvaliacaoCurriculo);
+		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoRepository.findOne(idAvaliacaoCurriculo);
 		avaliacaoCurriculo.setStatus(EStatusCurriculo.LISTAESPERA);
+		avaliacaoCurriculo.setFavorito(false);
+		avaliacaoCurriculoRepository.save(avaliacaoCurriculo);
 	}
 	
 	@PostMapping("/solicitarCurriculo")
 	public void solicitarCurriculo(@RequestParam(name = "idAvaliacaoCurriculo", required = true)Long idAvaliacaoCurriculo){		
-		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoController.findOne(idAvaliacaoCurriculo);
+		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoRepository.findOne(idAvaliacaoCurriculo);
 		avaliacaoCurriculo.setStatus(EStatusCurriculo.SOLICITOUCURRICULO);
+		avaliacaoCurriculoRepository.save(avaliacaoCurriculo);
 	}
 }

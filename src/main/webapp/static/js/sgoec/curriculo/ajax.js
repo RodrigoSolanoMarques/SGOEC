@@ -28,7 +28,6 @@ var ajaxCurriculo = {
 			}
 		}
 		
-		
 		/* Calculo para mostrar a idade do candidato */
 		curriculo.$modalAvaliarCurriculoIdade.text(calcularIdade(avaliaCurriculo.curriculo.candidato.pessoa.dataNascimento));
 		
@@ -38,25 +37,45 @@ var ajaxCurriculo = {
 	},
 	btnAprovar: function(idAvaliacaoCurriculo){
 		$.post("/empresa/avaliacaoCurriculo/aprovar", {idAvaliacaoCurriculo: idAvaliacaoCurriculo}, function(data){
-			curriculo.hideBtnAprovar();
-			alert("Curriculo Aprovado");
+			curriculo.hideBtnAprovarBtnDispensar(true);
+			curriculo.hideBtnListaEspera(true);
+			curriculo.hideBtnListaCandidatosFavoritos(true);
+			curriculo.hideBtnSolicitarCurriculo(true);
+			
+			curriculo.modalHideAvaliarCurriculo();
+			candidatosFavoritos.$tableFavoritosCandidatos.bootstrapTable('refresh');
 		});
 	},
 	
 	btnDispensar: function(idAvaliacaoCurriculo){
-		curriculo.hideBtnDispensar();
-		alert("Curriculo Reprovado");
+		$.post("/empresa/avaliacaoCurriculo/dispensar", {idAvaliacaoCurriculo: idAvaliacaoCurriculo}, function(data){
+			curriculo.hideBtnDispensar();
+			curriculo.modalHideAvaliarCurriculo();
+			candidatosFavoritos.$tableFavoritosCandidatos.bootstrapTable('refresh');
+		})
 	},
 	
 	btnListaCandidatosFavoritos: function(idAvaliacaoCurriculo){
-		
+		$.post("/empresa/avaliacaoCurriculo/favoritar", {idAvaliacaoCurriculo: idAvaliacaoCurriculo}, function(data){
+			curriculo.hideBtnListaCandidatosFavoritos();
+			curriculo.modalHideAvaliarCurriculo();
+			candidatosFavoritos.$tableFavoritosCandidatos.bootstrapTable('refresh');
+		})
 	},
 	
 	btnListaEspera: function(idAvaliacaoCurriculo){
-		
+		$.post("/empresa/avaliacaoCurriculo/listaEspera", {idAvaliacaoCurriculo: idAvaliacaoCurriculo}, function(data){
+			curriculo.hideBtnListaEspera();
+			curriculo.modalHideAvaliarCurriculo();
+			candidatosFavoritos.$tableFavoritosCandidatos.bootstrapTable('refresh');
+		})
 	},
 	
 	btnSolicitarCurriculo: function(idAvaliacaoCurriculo){
-		
+		$.post("/empresa/avaliacaoCurriculo/solicitarCurriculo", {idAvaliacaoCurriculo: idAvaliacaoCurriculo}, function(data){
+			curriculo.hideBtnSolicitarCurriculo();
+			curriculo.modalHideAvaliarCurriculo();
+			candidatosFavoritos.$tableFavoritosCandidatos.bootstrapTable('refresh');
+		})
 	}
 };
