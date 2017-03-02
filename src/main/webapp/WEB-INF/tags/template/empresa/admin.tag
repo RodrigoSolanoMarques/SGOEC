@@ -48,11 +48,13 @@
 							data-toggle="dropdown" role="button" aria-haspopup="true"
 							aria-expanded="false">Cadastros Básicos<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="/empresa/cargo/">Cargo</a></li>
 								<li><a href="/cidade/">Cidade</a></li>
+								<li><a href="/estado/">Estado</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/empresa/cargo/">Cargo</a></li>
 								<li><a href="/empresa/empregador/">Empregador</a></li>
 								<li><a href="/empresa/">Empresa</a></li>
-								<li><a href="/estado/">Estado</a></li>
+								
 							</ul></li>
 
 						<!-- 						<li class="dropdown"><a href="#" class="dropdown-toggle" -->
@@ -71,20 +73,21 @@
 							aria-expanded="false">Candidato <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="/empresa/candidato/favoritos">Favoritos</a></li>
+								<li role="separator" class="divider"></li>
 								<li><a href="/empresa/candidato/listar">Listar</a></li>
 							</ul></li>
 
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Curriculo <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="/empresa/curriculo/avaliar">Avaliar</a></li>
-								<li><a href="/empresa/curriculo/recentes">Recentes</a></li>
-								<li><a href="/empresa/curriculo/listar">Listar</a></li>
-							</ul></li>
+<!-- 						<li class="dropdown"><a class="dropdown-toggle" href="#" -->
+<!-- 							data-toggle="dropdown">Curriculo <b class="caret"></b></a> -->
+<!-- 							<ul class="dropdown-menu"> -->
+<!-- 								<li><a href="/empresa/curriculo/avaliar">Avaliar</a></li> -->
+<!-- 								<li><a href="/empresa/curriculo/recentes">Recentes</a></li> -->
+<!-- 								<li><a href="/empresa/curriculo/listar">Listar</a></li> -->
+<!-- 							</ul></li> -->
 						<li><a href="#">Sobre</a></li>
 					</ul>
 					<a class="btn btn-default navbar-btn navbar-right" type="button"
-						href="entrar">Sair</a>
+						href="/logout">Sair</a>
 				</div>
 				<!-- /.navbar-collapse -->
 			</div>
@@ -102,18 +105,18 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div class="footer-logo pull-left">
-						<button class="ui circular facebook icon button">
-							<i class="facebook icon"></i>
-						</button>
-						<button class="ui circular twitter icon button">
-							<i class="twitter icon"></i>
-						</button>
-						<button class="ui circular linkedin icon button">
-							<i class="linkedin icon"></i>
-						</button>
-						<button class="ui circular google plus icon button">
-							<i class="google plus icon"></i>
-						</button>
+<!-- 						<button class="ui circular facebook icon button"> -->
+<!-- 							<i class="facebook icon"></i> -->
+<!-- 						</button> -->
+<!-- 						<button class="ui circular twitter icon button"> -->
+<!-- 							<i class="twitter icon"></i> -->
+<!-- 						</button> -->
+<!-- 						<button class="ui circular linkedin icon button"> -->
+<!-- 							<i class="linkedin icon"></i> -->
+<!-- 						</button> -->
+<!-- 						<button class="ui circular google plus icon button"> -->
+<!-- 							<i class="google plus icon"></i> -->
+<!-- 						</button> -->
 					</div>
 
 					<div class="footer-text pull-right">

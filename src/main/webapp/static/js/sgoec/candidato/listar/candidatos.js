@@ -1,10 +1,8 @@
+// Tem dependencia do curriculo.js
+
 var candidatos = {
 	$modalAvaliarCurriculo: $('#modalAvaliarCurriculo'),
-		
-	carregar: function(curriculo){
-		showCarregando();
-		ajaxCandidatos.carregar(curriculo);
-	},
+	$tableCandidatos :  $('#tableCandidatos'),
 	
 	modalShowAvaliarCurriculo: function(){
 		candidatos.$modalAvaliarCurriculo.show();
@@ -20,7 +18,7 @@ var candidatos = {
 ====================================================*/
 $(function() {
 	debugger
-	ajaxCandidatos.listarCandidatos();
+	ajaxCandidatos.listar();
 });
 
 
@@ -28,7 +26,7 @@ $(function() {
 ****************** Data Formatter ********************
 ====================================================*/
 function nomeCompletoFormatter(value, row) {
-    return row.candidato.pessoa.nome + " " + row.candidato.pessoa.sobrenome;
+    return row.curriculo.candidato.pessoa.nome + " " + row.curriculo.candidato.pessoa.sobrenome;
 }
 
 function isFavoritoFormatter(value, row) {
@@ -50,8 +48,8 @@ function isCurriculoFormatter(value, row) {
 ====================================================*/
 
 window.isCurriculoEvents = {
-    'click .visualizar': function (e, value, row, index) {
+    'click .visualizar': function (e, value, row) {
     	debugger
-    	candidatos.carregar(row);
+    	curriculo.carregarAvaliacaoCurriculo(row);
     }
 };

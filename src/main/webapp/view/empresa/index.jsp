@@ -12,33 +12,34 @@
 
 		<componente:panel-padrao-sgoec>
 			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-					<div class="panel panel-default">
-						<div class="panel-heading text-center">Currículos Recentes</div>
-						<div class="panel-body">Panel</div>
-					</div>
-				</div>
+			<h4 class="text-center">Trabalho de Conclusão de Curso</h4>
+<!-- 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> -->
+<!-- 					<div class="panel panel-default"> -->
+<!-- 						<div class="panel-heading text-center">Currículos Recentes</div> -->
+<!-- 						<div class="panel-body">Panel</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-					<div class="panel panel-default">
-						<div class="panel-heading text-center">Oportunidades de Emprego</div>
-						<div class="panel-body">Panel</div>
-					</div>
-				</div>
+<!-- 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> -->
+<!-- 					<div class="panel panel-default"> -->
+<!-- 						<div class="panel-heading text-center">Oportunidades de Emprego</div> -->
+<!-- 						<div class="panel-body">Panel</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-					<div class="panel panel-default">
-						<div class="panel-heading text-center">Panel title</div>
-						<div class="panel-body">Panel</div>
-					</div>
-				</div>
+<!-- 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> -->
+<!-- 					<div class="panel panel-default"> -->
+<!-- 						<div class="panel-heading text-center">Panel title</div> -->
+<!-- 						<div class="panel-body">Panel</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-					<div class="panel panel-default">
-						<div class="panel-heading text-center">Panel title</div>
-						<div class="panel-body">Panel</div>
-					</div>
-				</div>
+<!-- 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> -->
+<!-- 					<div class="panel panel-default"> -->
+<!-- 						<div class="panel-heading text-center">Panel title</div> -->
+<!-- 						<div class="panel-body">Panel</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 			</div>
 		</componente:panel-padrao-sgoec>
 	</div>

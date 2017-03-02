@@ -11,7 +11,7 @@ public interface AvaliacaoCurriculoRepository extends JpaRepository<AvaliacaoCur
 	
 	public List<AvaliacaoCurriculo> findByFavoritoTrueAndStatusIsNotIn(EStatusCurriculo avaliacaoCurriculo);
 	
-	public List<AvaliacaoCurriculo> findByStatusIsNotIn(EStatusCurriculo avaliacaoCurriculo);
+	public List<AvaliacaoCurriculo> findByFavoritoFalseAndStatusIsNotIn(EStatusCurriculo avaliacaoCurriculo);
 	
 	public List<AvaliacaoCurriculo> findByIdIsNotIn(Long id);
 	

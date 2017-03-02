@@ -47,7 +47,7 @@ public class CandidatoController {
 	@GetMapping(value="/listarCandidatos")
 	public List<AvaliacaoCurriculo> listarCandidatos() {
 		
-		return avaliacaoCurriculoRepository.findByStatusIsNotIn(EStatusCurriculo.DISPENSADO);
+		return avaliacaoCurriculoRepository.findByFavoritoFalseAndStatusIsNotIn(EStatusCurriculo.DISPENSADO);
 	}
 
 	@GetMapping(value="/listarCandidatosFavoritos")

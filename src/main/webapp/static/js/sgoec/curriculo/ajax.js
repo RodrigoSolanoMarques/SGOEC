@@ -59,7 +59,7 @@ var ajaxCurriculo = {
 		$.post("/empresa/avaliacaoCurriculo/favoritar", {idAvaliacaoCurriculo: idAvaliacaoCurriculo}, function(data){
 			curriculo.hideBtnListaCandidatosFavoritos();
 			curriculo.modalHideAvaliarCurriculo();
-			candidatosFavoritos.$tableFavoritosCandidatos.bootstrapTable('refresh');
+			candidatos.$tableCandidatos.bootstrapTable('refresh');
 		})
 	},
 	
@@ -75,7 +75,12 @@ var ajaxCurriculo = {
 		$.post("/empresa/avaliacaoCurriculo/solicitarCurriculo", {idAvaliacaoCurriculo: idAvaliacaoCurriculo}, function(data){
 			curriculo.hideBtnSolicitarCurriculo();
 			curriculo.modalHideAvaliarCurriculo();
-			candidatosFavoritos.$tableFavoritosCandidatos.bootstrapTable('refresh');
+			
+			if(typeof candidatosFavoritos != "undefined"){
+				candidatosFavoritos.$tableFavoritosCandidatos.bootstrapTable('refresh');
+			}else{
+				candidatos.$tableCandidatos.bootstrapTable('refresh');
+			}
 		})
 	}
 };

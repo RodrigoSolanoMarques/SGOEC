@@ -8,92 +8,36 @@ var ajaxCandidatos = {
 		});
 	},
 	
-	listarCandidatos : function() {
-		debugger
-		$.ajax({
-			type : "GET",
-			url : '/empresa/candidato/listarCandidatos',
-			success : function(data) {
-				debugger
-				$('#tableCandidatos').bootstrapTable({
-					toolbar : ".toolbar",
-					showRefresh : true,
-					search : true,
-					showToggle : true,
-					showColumns : true,
-					pagination : true,
-					striped : true,
-					sortable : true,
-					data : data,
-					pageSize : 2,
-					pageList : [ 2, 10, 25, 50, 100 ],
+	listar : function() {
 
-					formatShowingRows : function(pageFrom, pageTo, totalRows) {
-						// // do nothing here, we don't want to show the text
-						// "showing x of y
-						// // from..."
-					},
-					formatRecordsPerPage : function(pageNumber) {
-						return pageNumber + " Linhas";
-					},
-					icons : {
-						refresh : 'fa fa-refresh',
-						toggle : 'fa fa-th-list',
-						columns : 'fa fa-columns',
-						detailOpen : 'fa fa-plus-circle',
-						detailClose : 'fa fa-minus-circle'
-					}
-				});
+		debugger
+		$('#tableCandidatos').bootstrapTable({
+			toolbar : ".toolbar",
+			showRefresh : true,
+			search : true,
+			showToggle : true,
+			showColumns : true,
+			pagination : true,
+			striped : true,
+			sortable : true,
+			url: '/empresa/candidato/listarCandidatos',
+			pageSize : 2,
+			pageList : [ 2, 10, 25, 50, 100 ],
+			formatShowingRows : function(pageFrom, pageTo, totalRows) {
+				// // do nothing here, we don't want to show the text
+				// "showing x of y
+				// // from..."
 			},
-			error : function(err) {
-				console.log(err)
-				alert('Erro');
+			formatRecordsPerPage : function(pageNumber) {
+				return pageNumber + " Linhas";
+			},
+			icons : {
+				refresh : 'fa fa-refresh',
+				toggle : 'fa fa-th-list',
+				columns : 'fa fa-columns',
+				detailOpen : 'fa fa-plus-circle',
+				detailClose : 'fa fa-minus-circle'
 			}
-		})
-	},
-
-	listarCandidatosFavoritos : function() {
-		debugger
-//		$.ajax({
-//			type : "GET",
-//			url : '/empresa/candidato/listarCandidatosFavoritos',
-//			success : function(data) {
-				$('#tableFavoritosCandidatos').bootstrapTable({
-					toolbar : ".toolbar",
-					showRefresh : true,
-					search : true,
-					showToggle : true,
-					showColumns : true,
-					pagination : true,
-					striped : true,
-					sortable : true,
-					url: '/empresa/candidato/listarCandidatosFavoritos',
-					//data : data,
-					pageSize : 2,
-					pageList : [ 2, 10, 25, 50, 100 ],
-
-					formatShowingRows : function(pageFrom, pageTo, totalRows) {
-						// // do nothing here, we don't want to show the text
-						// "showing x of y
-						// // from..."
-					},
-					formatRecordsPerPage : function(pageNumber) {
-						return pageNumber + " Linhas";
-					},
-					icons : {
-						refresh : 'fa fa-refresh',
-						toggle : 'fa fa-th-list',
-						columns : 'fa fa-columns',
-						detailOpen : 'fa fa-plus-circle',
-						detailClose : 'fa fa-minus-circle'
-					}
-				});
-//			},
-//			error : function(err) {
-//				console.log(err)
-//				alert('Erro');
-//			}
-//		})
+		});
 	}
-
 }
