@@ -9,6 +9,9 @@ var contaUsuario = {
 	$foto: $("#foto"),
 	$btnFoto: $("#btnFoto"),
 	$nomeFoto: $("#nomeFoto"),
+	$divSenhas: $("#divSenhas"),
+	$trocarSenha: $("#trocarSenha"),
+	$divTrocarSenha: $("#divTrocarSenha"),
 	
 	alterar: function(id){
 		ajaxContaUsuario.alterar(id);
@@ -44,6 +47,26 @@ $(function(){
 		contaUsuario.$foto.click();
 	});	
 	
+	contaUsuario.$trocarSenha.change(function() {
+	    if(this.checked) {
+	    	contaUsuario.$divSenhas.show();
+	    	
+			contaUsuario.$senha.prop('readonly', false);
+			contaUsuario.$compararSenha.prop('readonly', false);
+	    	
+	    	contaUsuario.$senha.prop('required', true);
+			contaUsuario.$compararSenha.prop('required', true);
+			
+	    }else{
+	    	contaUsuario.$divSenhas.hide();
+	    	
+	    	contaUsuario.$senha.prop('readonly', true);
+			contaUsuario.$compararSenha.prop('readonly', true);
+	    	
+	    	contaUsuario.$senha.prop('required', false);
+			contaUsuario.$compararSenha.prop('required', false);
+	    }
+	});
 })
 
 /*====================================================

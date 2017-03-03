@@ -3,12 +3,15 @@ package br.edu.utfpr.tcc.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.terracotta.entity.EntityResponse;
 
 import br.edu.utfpr.tcc.enumerator.ERole;
 import br.edu.utfpr.tcc.model.ContaUsuario;
 import br.edu.utfpr.tcc.model.Permissao;
 import br.edu.utfpr.tcc.repository.ContaUsuarioRepository;
 import br.edu.utfpr.tcc.repository.PermissaoRepository;
+import net.minidev.json.JSONObject;
 import scala.sys.process.processInternal;
 
 
@@ -50,8 +55,8 @@ public class ContaUsuarioController {
 
 	@GetMapping("/alterar")
 	public ContaUsuario alterar(@RequestParam(value = "id", required = true) Long id) {
-
 		ContaUsuario contaUsuario = contaUsuarioRepository.findOne(id);
+		contaUsuario.setSenha("");
 		return contaUsuario;
 	}
 
@@ -76,41 +81,46 @@ public class ContaUsuarioController {
 
 	// Salvar Empregador
 	@PostMapping("/salvar/empregador")
-	public ContaUsuario salvarEmpregador(ContaUsuario contaUsuario, String compararSenha,@RequestParam("foto") MultipartFile foto, HttpServletRequest request) {
-			
-		if(contaUsuario.getSenha().equals(compararSenha)){
-			salvar(contaUsuario, ERole.ROLE_EMPREGADOR, request, foto);
-			return contaUsuario;
-		}else{
-			// Retornar para a view quando a senha ou outra validação estiver errada - ajax - contausuario
-			return  contaUsuario;
-		}
-	}
-
-	// Salvar User(Não usar)
-	@PostMapping("/salvar/user")
-	public ContaUsuario salvarUser(ContaUsuario contaUsuario, BindingResult erros, Model model,
-			RedirectAttributes redirect) {
+	public ResponseEntity salvarEmpregador(ContaUsuario contaUsuario, String compararSenha, Boolean trocarSenha, @RequestParam("foto") MultipartFile foto, HttpServletRequest request) {
 		
-		//salvar(contaUsuario, ERole.ROLE_USER);
-
-		return contaUsuario;// "redirect:/login";
+		Map<String, Object> data = new HashMap<>();
+		
+		if(trocarSenha){
+			if(!contaUsuario.getSenha().equals(compararSenha)){
+				data.put("msg", "As senhas não são iguais!");
+				return new ResponseEntity(data,HttpStatus.NOT_ACCEPTABLE);
+			}
+		}
+		
+		return salvar(contaUsuario, ERole.ROLE_EMPREGADOR, request, foto, trocarSenha);
 	}
 
 	// Salvar Generico para os tipos de Roles
-	public ContaUsuario salvar(ContaUsuario contaUsuario, ERole role, HttpServletRequest request, MultipartFile foto) {
+	public ResponseEntity salvar(ContaUsuario contaUsuario, ERole role, HttpServletRequest request, MultipartFile foto, Boolean trocarSenha) {
 		
+		Map<String, Object> data = new HashMap<>();
 		ContaUsuario contaUsuarioSalvar = contaUsuarioRepository.findOne(contaUsuario.getId());
 		
-		String encodedPassword = contaUsuario.getEncodedPassword(contaUsuario.getPassword());
-
-		contaUsuario.setSenha(encodedPassword);
-		contaUsuario.addPermissao(getPermissao(role));
-
+		if(trocarSenha){
+			String encodedPassword = contaUsuario.getEncodedPassword(contaUsuario.getPassword());
+			contaUsuarioSalvar.setSenha(encodedPassword);
+		}
+		
 		if (foto != null && ((ERole.ROLE_ADMIN == role) || (ERole.ROLE_CANDIDATO == role) || (ERole.ROLE_EMPREGADOR == role))) {
 			String caminho = prepararAnexo(request, contaUsuario.getId(), foto);
 			contaUsuario.setPathImagem(caminho);
 		}
+		
+		data.put("msg", "Conta de usuário salva com sucesso!");
+		
+		
+		
+		
+
+		
+		contaUsuarioSalvar.addPermissao(getPermissao(role));
+
+		
 		
 		contaUsuarioRepository.save(contaUsuario);
 		return contaUsuario;

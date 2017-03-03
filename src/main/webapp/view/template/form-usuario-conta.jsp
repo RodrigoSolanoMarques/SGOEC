@@ -39,13 +39,7 @@
 											</div>
 
 										</div>
-<!-- 										<div class="form-group"> -->
-<!-- 											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 "> -->
 
-<!-- 												<input type="file" id="foto" name="foto" style="display:  none"> -->
-<!-- 												<button id="btnFoto" class="btn btn-default">Adicionar</button> -->
-<!-- 											</div> -->
-<!-- 										</div> -->
 									</div>
 
 									<div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
@@ -57,6 +51,19 @@
 											value="${contaUsuario.username}" required  />
 
 									</div>
+									<div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+										<label for="email" class="">E-mail</label> <input type="email"
+											class="form-control" id="email" name="email"
+											data-toggle="tooltip" data-placement="top"
+											title="E-mail da conta" placeholder="Digite um E-mail"
+											value="${contaUsuario.email}" required  />
+
+									</div>
+									<div id="divTrocarSenha" class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+										<input id="trocarSenha" type="checkbox"><label for="trocarSenha" class="">Trocar Senha</label> 
+									</div>
+									
+									<div id="divSenhas">
 									<div class="col-xs-12 col-sm-4 col-md-5 col-lg-5">
 										<label for="senha" class="">Senha</label> <input
 											type="password" class="form-control" id="senha" name="senha"
@@ -74,13 +81,6 @@
 											placeholder="Digite novamente a senha" required  />
 
 									</div>
-
-									<div class="col-xs-12 col-sm-9 col-md-5 col-lg-5">
-										<label for="email" class="">E-mail</label> <input type="email"
-											class="form-control" id="email" name="email"
-											data-toggle="tooltip" data-placement="top"
-											title="E-mail da conta" placeholder="Digite um E-mail"
-											value="${contaUsuario.email}" required  />
 
 									</div>
 									

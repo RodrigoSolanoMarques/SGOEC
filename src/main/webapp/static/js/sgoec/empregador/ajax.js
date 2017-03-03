@@ -6,7 +6,6 @@ var ajaxEmpregador = {
 		$.getJSON("/empresa/contaUsuario/alterar", {id: Empregador.contaUsuario.id},function(data){
 			debugger;
 			putResultVal(data, empregador.$modalFormCadastrarContaUsuario);
-			//empregador.$imagem.attr("src","/imagens/" + data.id + "/"+ data.id + ".jpg");
 			
 			if( (data != null) && (data.id != null) && (data.id > 0)){
 				if(data.pathImagem != null && data.pathImagem != ""){

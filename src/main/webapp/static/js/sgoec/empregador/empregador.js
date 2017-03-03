@@ -1,3 +1,5 @@
+/* Dependencia de conta-usuario.js */
+
 var empregador = {
 	$tableEmpregadores: $("#tableEmpregadores"),
 	$modalCadastroEmpregador: $("#modalCadastroEmpregador"),
@@ -29,14 +31,18 @@ var empregador = {
 	modalShowCadastroEmpregador: function(){
 		debugger
 		showCarregando();
-		empregador.$modalCadastroEmpregador.show();
 		
 		if(contaUsuario.$id.val()){
 			contaUsuario.$username.prop('readonly', true);
-			contaUsuario.$senha.prop('required', false);
-			contaUsuario.$compararSenha.prop('required', false);
+			contaUsuario.$divSenhas.hide();
+			contaUsuario.$divTrocarSenha.show();
 		}else{
+			
+			contaUsuario.$divTrocarSenha.hide();
+			
 			contaUsuario.$username.prop('readonly', false);
+			contaUsuario.$divSenhas.show();
+			
 			contaUsuario.$senha.prop('readonly', false);
 			contaUsuario.$compararSenha.prop('readonly', false);
 			
@@ -45,6 +51,8 @@ var empregador = {
 			
 			contaUsuario.$imagem.attr('src', '/static/img/nan.jpg');
 		}
+		
+		empregador.$modalCadastroEmpregador.show();
 		hideCarregando();
 	},
 	

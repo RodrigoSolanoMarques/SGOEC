@@ -25,16 +25,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
-			.exceptionHandling().accessDeniedPage("/erro403").and()/*
-			.formLogin()
-			.defaultSuccessUrl("/empresa/index")
-			.failureUrl("/login?error=bad_credentials").permitAll()
-			.and()*/
+			.exceptionHandling().accessDeniedPage("/erro403")
+			.and()
 			.authorizeRequests()
 			.antMatchers("/empresa/**").hasRole("ADMIN")
 				//.antMatchers("/**").hasRole("ADMIN");
 			.anyRequest().authenticated()
 			.and().formLogin()
+			.failureUrl("/login?error=bad_credentials").permitAll()
 			.defaultSuccessUrl("/empresa/index");
 	}
 

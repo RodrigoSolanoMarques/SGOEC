@@ -54,8 +54,7 @@ public class EmpregadorController {
 		return new GsonBuilder().setDateFormat("dd/MM/yyy").create().toJson(empregadorRepository.findOne(id));
 	}
 	@PostMapping("/salvar")
-	public String salvar(Empregador empregador){				
-		
+	public String salvar(Empregador empregador){
 		return new GsonBuilder().setDateFormat("dd/MM/yyyy").create().toJson(empregadorRepository.save(empregador));
 	}
 	
