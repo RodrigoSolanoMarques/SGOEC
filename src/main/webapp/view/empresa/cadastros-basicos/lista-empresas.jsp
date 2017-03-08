@@ -28,26 +28,14 @@
 	<jsp:attribute name="scriptsEspecificos">
 <!--       <script type="text/javascript" -->
 <!-- 			src="/static/js/bootstrap-table/jquery-1.11.2.min.js"></script> -->
-		<script type="text/javascript"
-			src="/static/js/bootstrap-table/bootstrap-table.min.js"></script>
-			
-		<script type="text/javascript"
-			src="/static/js/bootstrap-table/bootstrap-table-mobile.min.js"></script>
-			
+		<script type="text/javascript" src="/static/js/bootstrap-table/bootstrap-table.min.js"></script>
+		<script type="text/javascript" src="/static/js/bootstrap-table/bootstrap-table-mobile.min.js"></script>
 		<script type="text/javascript" src="/static/js/sgoec/cidade/ajax.js"></script>
-		<script type="text/javascript"
-			src="/static/js/sgoec/cidade/cidade.js"></script>
-		
+		<script type="text/javascript"src="/static/js/sgoec/cidade/cidade.js"></script>
 		<script type="text/javascript" src="/static/js/sgoec/empresa/ajax.js"></script>
-			
-	      <script type="text/javascript"
-			src="/static/js/sgoec/empresa/empresa.js"></script>
-			
-		<script type="text/javascript"
-			src="/static/js/jquery-mask/jquery.mask.min.js"></script>
-			
-			<script type="text/javascript"
-			src="/static/js/sgoec/funcoes.js"></script>
+    	<script type="text/javascript" src="/static/js/sgoec/empresa/empresa.js"></script>	
+		<script type="text/javascript" src="/static/js/jquery-mask/jquery.mask.min.js"></script>	
+		<script type="text/javascript" src="/static/js/sgoec/funcoes.js"></script>
     </jsp:attribute>
 
 	<jsp:body>

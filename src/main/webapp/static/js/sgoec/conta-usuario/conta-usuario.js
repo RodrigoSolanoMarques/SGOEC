@@ -12,6 +12,11 @@ var contaUsuario = {
 	$divSenhas: $("#divSenhas"),
 	$trocarSenha: $("#trocarSenha"),
 	$divTrocarSenha: $("#divTrocarSenha"),
+	$divAlertSuccess: $("#divAlertSuccess"),
+	$divAlertDanger: $("#divAlertDanger"),
+	
+	$divAlertSuccessSpan : $('#divAlertSuccessSpan'),
+	$divAlertDangerSpan : $('#divAlertDangerSpan'),
 	
 	alterar: function(id){
 		ajaxContaUsuario.alterar(id);
@@ -22,6 +27,15 @@ var contaUsuario = {
 	},
 	
 	limparFormCadastrarContaUsuario: function(){
+		contaUsuario.$trocarSenha.prop('checked', false);
+		contaUsuario.$divSenhas.hide();
+    	
+    	contaUsuario.$senha.prop('readonly', true);
+		contaUsuario.$compararSenha.prop('readonly', true);
+    	
+    	contaUsuario.$senha.prop('required', false);
+		contaUsuario.$compararSenha.prop('required', false);
+		
 		contaUsuario.$senha.val(null);
 		contaUsuario.$compararSenha.val(null);
 	}
@@ -65,8 +79,14 @@ $(function(){
 	    	
 	    	contaUsuario.$senha.prop('required', false);
 			contaUsuario.$compararSenha.prop('required', false);
+			
+			contaUsuario.$senha.val(null);
+			contaUsuario.$compararSenha.val(null);
 	    }
 	});
+	
+	contaUsuario.$divAlertSuccess.hide();
+	contaUsuario.$divAlertDanger.hide();
 })
 
 /*====================================================

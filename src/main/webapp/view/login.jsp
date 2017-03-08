@@ -29,6 +29,10 @@
 <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css" />
 <link rel="stylesheet" href="/static/css/login.css" />
 <link rel="stylesheet" href="/static/plugins/magic/magic.css" />
+<link rel="stylesheet"	href="<c:url value="/static/css/jquery-loading-modal/jquery-loading-modal.min.css"/>">
+<link rel="stylesheet"	href="<c:url value="/static/css/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css"/>">
+<link href="/static/css/sgoec/style.css" rel='stylesheet' type='text/css'>
+
 <!-- END PAGE LEVEL STYLES -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -44,68 +48,223 @@
 	<!-- PAGE CONTENT -->
 	<div class="container">
 		<div class="text-center">
-			<!--         <img src="assets/img/logo.png" id="logoimg" alt=" Logo" /> -->
+<!-- 			        <img src="assets/img/logo.png" id="logoimg" alt=" Logo" /> -->
 			<h1>SGOEC</h1>
 		</div>
 		<div class="tab-content">
 			<div id="login" class="tab-pane active">
-				<form action="#" class="form-signin">
-					<p
-						class="text-muted text-center btn-block btn btn-primary btn-rect">
-						Informe os dados abaixo</p>
-					<input type="text" placeholder="E-mail/Nome de Usuário"
+				<form name="f" action="/login" method="post" class="form-signin">
+					<p class="text-muted text-center btn-block btn btn-primary btn-rect">Informe os dados abaixo</p>
+					<input type="text" placeholder="Nome de Usuário"
 						class="form-control" name="username"/> 
 					<input type="password"
 						placeholder="Senha" class="form-control" name="password"/>
-					<button class="btn text-muted text-center btn-danger" type="submit">Entrar
+						
+						
+							<div id="divAlertSuccess" class="alert alert-success alert-dismissible" role="alert">
+							  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							  <span id="divAlertSuccessText"/>
+							</div>
+							
+						
+					<button class="btn text-muted text-center btn-success  btn-block" type="submit">Entrar
 					</button>
 				</form>
+				<div class="text-center">
+					<ul class="list-inline">				
+						<li><a class="text-muted" href="#signup" data-toggle="tab">Inscrever-se</a></li>
+					</ul>
+				</div>
 			</div>
-			<div id="forgot" class="tab-pane">
-				<form action="/empresa/index" class="form-signin">
-					<p
-						class="text-muted text-center btn-block btn btn-primary btn-rect">Digite
-						seu E-mail</p>
-					<input type="email" required="required" placeholder="Seu E-mail"
-						class="form-control" /> <br />
-					<button class="btn text-muted text-center btn-success"
-						type="submit">Recuperar Senha</button>
-				</form>
-			</div>
+
 			<div id="signup" class="tab-pane">
-				<form action="#" class="form-signin">
-					<p
-						class="text-muted text-center btn-block btn btn-primary btn-rect">Preencha os detalhes para se registrar</p>
-					<input type="text" placeholder="Primeiro Nome" class="form-control" />
-					<input type="text" placeholder="Ultimo Nome" class="form-control" />
-					<input type="text" placeholder="Nome de Usuário" class="form-control" />
-					<input type="email" placeholder="E-mail" class="form-control" />
-					<input type="password" placeholder="Senha" class="form-control" />
-					<input type="password" placeholder="Digite novamente a senha"
-						class="form-control" />
-					<button class="btn text-muted text-center btn-success"
+				
+				<form id="formRegistrarContaUsuario" class="form-horizontal">
+					<div class="form-group">
+					
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="panel panel-default">
+								<div class="panel-heading text-center">
+								<h4>Informações da Empresa</h4>
+							</div>
+							<div class="panel-body">
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+									<label for="razaoSocial" class="">Razão Social</label> 
+									<input type="text" class="form-control" id="razaoSocial"
+											name="razaoSocial" data-toggle="tooltip" data-placement="top"
+											title="Razão Social" placeholder="Razão Social"
+											value="${razaoSocial}" required />
+								
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+									<label for="nomeFantasia" class="">Nome Fantasia</label> 
+									<input type="text" class="form-control" id="nomeFantasia"
+											name="nomeFantasia" data-toggle="tooltip"
+											data-placement="top" title="Nome Fantasia"
+											placeholder="Nome Fantasia" value="${nomeFantasia}" required/>
+								
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+									<label for="cpfCnpj" class="">Tipo da Pessoa</label>
+									<div class="input-group">
+								      <span class="input-group-addon">
+								      <label for="cpf" class="">CPF</label>
+								        <input id="cpf" type="radio" name="isPessoaJuridica"
+												value="true" onclick="loginRegistro.validaCpfCnpj()" required>
+								      </span>
+								      <span class="input-group-addon">
+								      <label for="cnpj" class="">CNPJ</label>
+								        <input id="cnpj" type="radio" name="isPessoaJuridica"
+												value="false" onclick="loginRegistro.validaCpfCnpj()" required >
+								      </span>
+								      <input id="cpfCnpj" name="cpfCnpj" type="text"
+												class="form-control" required>
+								    </div>
+								
+								</div>
+								
+								<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+									<label for="estado" class="">Estado</label> 
+									<select class="form-control estado" id="estado"
+											name="cidade.estado.id" data-toggle="tooltip" data-placement="top"
+											title="Escolha um estado" required>
+								        <c:forEach items="${listaEstado}" var="estado"> 
+								            <option value="${estado.id}">${estado.nome}</option>
+								        </c:forEach>
+								    </select>
+								
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<label for="cidade" class="">Cidade</label> 
+									<select class="form-control cidade" id="cidade"
+											name="cidade.id" data-toggle="tooltip" data-placement="top"
+											title="Escolha uma cidade" required>
+								        <c:forEach items="${listaCidade}" var="cidade"> 
+								            <option value="${cidade.id}">${cidade.nome}</option>
+								        </c:forEach>
+								    </select>
+								
+								</div>
+							</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+							<!-- Inicio Informações Básicas -->
+							<div class="panel panel-default">
+								<div class="panel-heading text-center">
+									<h4>Informações do Usuário</h4>
+								</div>
+								<div class="panel-body">
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label for="nome" class="">Nome</label> 
+										<input type="text"
+											class="form-control" id="nome" name="nome"
+											data-toggle="tooltip" data-placement="top"
+											title="Nome do empregador" placeholder="Nome do Empregador"
+											value="${pessoa.nome}" required/>
+
+									</div>
+
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label for="sobrenome" class="">Sobrenome</label> <input
+											type="text" class="form-control" id="sobrenome"
+											name="sobrenome" data-toggle="tooltip"
+											data-placement="top" title="Sobrenome do empregador"
+											placeholder="Sobrenome do Empregador"
+											value="${pessoa.sobrenome}" required/>
+
+									</div>
+								</div>
+							</div>
+							<!-- Final Informações Básicas -->
+						</div>
+					</div>
+						
+						<div class="form-group">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="panel panel-default">
+									<div class="panel-heading text-center">
+									<h4>Informações da Conta</h4>
+								</div>
+								<div class="panel-body">
+		
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="username" class="">Nome de Usuário</label> <input
+											type="text" class="form-control" id="username"
+											name="username" data-toggle="tooltip" data-placement="top"
+											title="Nome de usuário" placeholder="Nome de Usuário"
+											value="${contaUsuario.username}" required  />
+		
+									</div>
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="email" class="">E-mail</label> <input type="email"
+											class="form-control" id="email" name="email"
+											data-toggle="tooltip" data-placement="top"
+											title="E-mail da conta" placeholder="Digite um E-mail"
+											value="${contaUsuario.email}" required  />
+		
+									</div>
+									<div id="divSenhas">
+										<div class="col-xs-12 col-sm-5 col-md-6 col-lg-6">
+											<label for="senha" class="">Senha</label> <input
+												type="password" class="form-control" id="senha" name="senha"
+												data-toggle="tooltip" data-placement="top"
+												title="Senha do usuário" placeholder="Senha do usuário"
+												required  />
+		
+										</div>
+										<div class="col-xs-0 col-sm-2 col-md-0 col-lg-0"></div>
+										<div class="col-xs-12 col-sm-5 col-md-6 col-lg-6">
+											<label for="compararSenha" class="">Digite Novamente a
+												Senha</label> <input type="password" class="form-control"
+												id="compararSenha" name="compararSenha" data-toggle="tooltip"
+												data-placement="top" title="Digite novamente a senha"
+												placeholder="Digite novamente a senha" required  />
+		
+										</div>
+									</div>
+		
+								</div>								
+							</div>
+						</div>
+					</div>		
+					<div class="form-group">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							
+							
+							<div id="divAlertDanger" class="alert alert-danger alert-dismissible" role="alert">
+							  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							  <span id="divAlertDangerText" />
+							</div>
+						</div>
+					</div>
+
+					<button class="btn text-muted text-center btn-success btn-block"
 						type="submit">Registrar</button>
-				</form>
+				</form>				
+				<div class="text-center hidden">
+					<ul class="list-inline">				
+						<li><a id="entrar" class="text-muted" href="#login" data-toggle="tab">Inscrever-se</a></li>
+					</ul>
+				</div>			
 			</div>
 		</div>
-		<div class="text-center">
-			<ul class="list-inline">
-				<li><a class="text-muted" href="#login" data-toggle="tab">Entrar</a></li>
-				<li><a class="text-muted" href="#forgot" data-toggle="tab">Esqueceu a
-						Senha</a></li>
-				<li><a class="text-muted" href="#signup" data-toggle="tab">Inscrever-se</a></li>
-			</ul>
-		</div>
-
-
 	</div>
 
 	<!--END PAGE CONTENT -->
 
 	<!-- PAGE LEVEL SCRIPTS -->
-	<script src="/static/js/jquery/jquery-2.2.4.min.js"></script>
-	<script src="/static/js/bootstrap/bootstrap.min.js"></script>
-	<script src="/static/js/login.js"></script>
+	<script type="text/javascript" src="/static/js/jquery/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/static/js/login.js"></script>
+	<script type="text/javascript" src="/static/js/ajax.js"></script>
+	<script type="text/javascript" src="/static/js/moment/moment.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-mask/jquery.mask.min.js"></script>
+	<script type="text/javascript" src="/static/js/sgoec/funcoes.js"></script>
 	<!--END PAGE LEVEL SCRIPTS -->
 
 </body>

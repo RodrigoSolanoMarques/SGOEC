@@ -22,15 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.terracotta.entity.EntityResponse;
 
 import br.edu.utfpr.tcc.enumerator.ERole;
 import br.edu.utfpr.tcc.model.ContaUsuario;
 import br.edu.utfpr.tcc.model.Permissao;
 import br.edu.utfpr.tcc.repository.ContaUsuarioRepository;
 import br.edu.utfpr.tcc.repository.PermissaoRepository;
-import net.minidev.json.JSONObject;
-import scala.sys.process.processInternal;
 
 
 
@@ -88,7 +85,7 @@ public class ContaUsuarioController {
 		if(trocarSenha){
 			if(!contaUsuario.getSenha().equals(compararSenha)){
 				data.put("msg", "As senhas não são iguais!");
-				return new ResponseEntity(data,HttpStatus.NOT_ACCEPTABLE);
+				return new ResponseEntity(data, HttpStatus.NOT_ACCEPTABLE);
 			}
 		}
 		
@@ -99,31 +96,31 @@ public class ContaUsuarioController {
 	public ResponseEntity salvar(ContaUsuario contaUsuario, ERole role, HttpServletRequest request, MultipartFile foto, Boolean trocarSenha) {
 		
 		Map<String, Object> data = new HashMap<>();
-		ContaUsuario contaUsuarioSalvar = contaUsuarioRepository.findOne(contaUsuario.getId());
+		ContaUsuario contaUsuarioSalvar = new ContaUsuario();
+		
+		/* Se a cona já estiver cadastrada busca as informaçoes dela */
+		if(contaUsuario.getId() == null){
+			contaUsuarioSalvar = contaUsuario;
+		}else{
+			contaUsuarioSalvar = contaUsuarioRepository.findOne(contaUsuario.getId());
+		}
 		
 		if(trocarSenha){
 			String encodedPassword = contaUsuario.getEncodedPassword(contaUsuario.getPassword());
 			contaUsuarioSalvar.setSenha(encodedPassword);
 		}
 		
-		if (foto != null && ((ERole.ROLE_ADMIN == role) || (ERole.ROLE_CANDIDATO == role) || (ERole.ROLE_EMPREGADOR == role))) {
+		if ((!foto.isEmpty())  && ((ERole.ROLE_ADMIN == role) || (ERole.ROLE_CANDIDATO == role) || (ERole.ROLE_EMPREGADOR == role))) {
 			String caminho = prepararAnexo(request, contaUsuario.getId(), foto);
-			contaUsuario.setPathImagem(caminho);
+			contaUsuarioSalvar.setPathImagem(caminho);
 		}
+		contaUsuarioSalvar.addPermissao(getPermissao(role));
+		
+		contaUsuarioRepository.save(contaUsuarioSalvar);
 		
 		data.put("msg", "Conta de usuário salva com sucesso!");
-		
-		
-		
-		
-
-		
-		contaUsuarioSalvar.addPermissao(getPermissao(role));
-
-		
-		
-		contaUsuarioRepository.save(contaUsuario);
-		return contaUsuario;
+		data.put("contaUsuario", contaUsuarioSalvar);
+		return new ResponseEntity(data, HttpStatus.OK);
 	}
 
 	// Obter a permissão

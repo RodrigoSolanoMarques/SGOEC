@@ -129,17 +129,12 @@
 		</div>
 	</footer>
 
-	<script type="text/javascript"
-		src="/static/js/jquery/jquery-2.2.4.min.js"></script>
-	<script type="text/javascript"
-		src="/static/js/bootstrap/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="/static/js/semantic/semantic.min.js"></script>
-	<script type="text/javascript"
-		src="/static/js/jquery-loading-modal/jquery-loading-modal.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/static/js/semantic/semantic.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-loading-modal/jquery-loading-modal.min.js"></script>
 	<script type="text/javascript" src="/static/js/moment/moment.js"></script>
-	<script type="text/javascript"
-		src="/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
 
 	<jsp:invoke fragment="scriptsEspecificos"></jsp:invoke>
 </body>

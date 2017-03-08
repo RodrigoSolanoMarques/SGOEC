@@ -38,7 +38,7 @@ public class EmpregadorController {
 	PermissaoRepository permissaoRepository;
 	
 	@GetMapping
-	public ModelAndView home(){	
+	public ModelAndView home(){
 		ModelAndView model = new ModelAndView("/empresa/cadastros-basicos/lista-empregadores");
 		
 		model.addObject("listaEstado", estadoRepository.findAll());

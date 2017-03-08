@@ -29,11 +29,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.and()
 			.authorizeRequests()
 			.antMatchers("/empresa/**").hasRole("ADMIN")
+			.antMatchers("/cidade/**").permitAll()
+			.antMatchers("/registrar").permitAll()
 				//.antMatchers("/**").hasRole("ADMIN");
 			.anyRequest().authenticated()
 			.and().formLogin()
+			.loginPage("/login")
+			.defaultSuccessUrl("/empresa/index")
 			.failureUrl("/login?error=bad_credentials").permitAll()
-			.defaultSuccessUrl("/empresa/index");
+			.and()
+	        .logout().logoutSuccessUrl("/login");
 	}
 
 	@Bean

@@ -16,6 +16,21 @@
 							<h4>Informações da Conta</h4>
 						</div>
 						<div class="panel-body">
+						
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						
+						<div id="divAlertSuccess" class="alert alert-success alert-dismissible" role="alert">
+						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						  <strong>Sucesso! </strong><span id="divAlertSuccessSpan"></span>
+						</div>
+						
+						<div id="divAlertDanger" class="alert alert-danger alert-dismissible" role="alert">
+						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						  <strong>Falhou! </strong><span id="divAlertDangerSpan"></span>
+						</div>
+						
+						
+						</div>
 
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div class="form-group">

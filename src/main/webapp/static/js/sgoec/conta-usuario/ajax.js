@@ -22,7 +22,9 @@ var ajaxContaUsuario = {
 //			hideCarregando();
 //		});
 	
-		var formData = new FormData($("#modalFormCadastrarContaUsuario")[0]);
+		var formData = new FormData($("#modalFormCadastrarContaUsuario")[0]); 
+		formData.append("trocarSenha", contaUsuario.$trocarSenha.is(':checked'));
+		
 		$.ajax({
 			type : "POST",
 			url : "/empresa/contaUsuario/salvar/empregador",
@@ -33,8 +35,24 @@ var ajaxContaUsuario = {
 			processData: false,
 			success : function(data) {
 				debugger;
-				contaUsuario.$imagem.attr('src', data.pathImagem);
+				
+				if(data.contaUsuario.pathImagem != null && data.contaUsuario.pathImagem != "" ){
+					contaUsuario.$imagem.attr('src', data.contaUsuario.pathImagem);
+				}
+				
+				contaUsuario.$divAlertSuccessSpan.text(data.msg);
+				contaUsuario.$divAlertSuccess.show();
+				
+				contaUsuario.limparFormCadastrarContaUsuario();
+				
 				hideCarregando();
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				debugger
+				contaUsuario.$divAlertDangerSpan.text(jqXHR.responseJSON.msg);
+				contaUsuario.$divAlertDanger.show();
+				hideCarregando();
+				
 			}
 		});
 		

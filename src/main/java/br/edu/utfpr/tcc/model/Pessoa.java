@@ -35,7 +35,7 @@ public class Pessoa {
 	@Column(length=100, nullable=false)
 	private String sobrenome;
 	
-	@Column(length=18, nullable=false)
+	@Column(length=18, nullable=true)
 	private String cpf;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -54,16 +54,16 @@ public class Pessoa {
 	@Column(length=18, nullable=true)
 	private String celular2;
 	
-	@Column(length=100, nullable=false)
+	@Column(length=100, nullable=true)
 	private String rua;
 	
-	@Column(nullable=false)
+	@Column(nullable=true)
 	private Integer numero;
 	
-	@Column(length=50, nullable=false)
+	@Column(length=50, nullable=true)
 	private String bairro;
 	
-	@Column(length=15, nullable=false)
+	@Column(length=15, nullable=true)
 	private String cep;
 	
 	@Column(length=255, nullable=true)
