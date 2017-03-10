@@ -13,7 +13,7 @@ var ajaxLogin = {
 				}
 			});
 			loginRegistro.classCidade.html(options);
-			hideCarregando();
+			//hideCarregando();
 		});
 	},
 	
