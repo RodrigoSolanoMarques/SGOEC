@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.edu.utfpr.tcc.dto.CursoComplementarDTO;
+import br.edu.utfpr.tcc.dto.FormacaoDTO;
 import lombok.Data;
 
 @Entity
@@ -22,12 +24,8 @@ public class CursoComplementar {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable=true)
-	private Integer idMobile;
-	
-//	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "idCurriculo", referencedColumnName = "id")
-//	private Curriculo curriculo;
+//	@Column(nullable=true)
+//	private Integer idMobile;
 	
 	@Column(length=100, nullable=false)
 	private String nomeCurso;
@@ -45,4 +43,22 @@ public class CursoComplementar {
 	@Temporal(TemporalType.DATE)
 	@Column(nullable=true)
 	private Date dataFinal;
+	
+	@Column(nullable=true)
+	private Integer periodo;
+	
+	public CursoComplementar converterCursoComplementarDTO(CursoComplementarDTO cursoComplementarDTO) {
+
+		CursoComplementar cursoComplementar = new CursoComplementar();
+		
+		cursoComplementar.setId(cursoComplementarDTO.getId());
+		cursoComplementar.setIsConcluido(cursoComplementarDTO.getIsConcluido());
+		cursoComplementar.setDataFinal(cursoComplementarDTO.getDataFinal());
+		cursoComplementar.setDataInicial(cursoComplementarDTO.getDataInicial());
+		cursoComplementar.setInstituicao(cursoComplementarDTO.getInstituicao());
+		cursoComplementar.setNomeCurso(cursoComplementarDTO.getNomeCurso());
+		cursoComplementar.setPeriodo(cursoComplementarDTO.getPeriodo());
+	          
+	      return cursoComplementar;
+	  }
 }

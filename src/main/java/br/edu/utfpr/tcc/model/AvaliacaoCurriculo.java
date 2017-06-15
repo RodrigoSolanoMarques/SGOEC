@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,22 +38,28 @@ public class AvaliacaoCurriculo {
 	@JoinColumn(name = "idCurriculo", referencedColumnName = "id")
 	private Curriculo curriculo;
 	
-	@Column(nullable=true)
+	@Column(nullable=false)
 	private EStatusCurriculo status;
 	
 	@Column(nullable=false)
 	private Boolean favorito;
 	
+	@Column(nullable=true)
+	private Boolean isAceitaEntrevista;
+	
 	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable=false)
 	private Date dataCurriculoEnviado;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm")
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable=true)
 	private Date dataEntrevista;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable=true)
 	private Date dataEncerramento;
 	
 }

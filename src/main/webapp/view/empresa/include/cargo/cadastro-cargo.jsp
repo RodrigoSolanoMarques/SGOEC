@@ -29,7 +29,7 @@
 						</div>
 
 						<div class="col-xs-9 col-sm-10 col-md-10 col-lg-10">
-							<label for="areaProfissional">Area Profissional</label> <select
+							<label for="areaProfissional">Área Profissional</label> <select
 								id="areaProfissional" class="form-control"
 								name="areaProfissional.id" data-toggle="tooltip"
 								data-placement="top" title="Escolha uma Area Profissional">

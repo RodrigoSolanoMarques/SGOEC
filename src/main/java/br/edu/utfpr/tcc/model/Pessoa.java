@@ -15,6 +15,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import br.edu.utfpr.tcc.dto.PessoaDTO;
 import lombok.Data;
 
 @Entity
@@ -71,5 +72,30 @@ public class Pessoa {
 	
 	@Column(length=255, nullable=true)
 	private String foto;
+	
+	public Pessoa converterPessoaDTO(PessoaDTO pessoaDTO) {
+
+		Pessoa pessoa = new Pessoa();
+		pessoa.setId(pessoaDTO.getId());
+		pessoa.setBairro(pessoaDTO.getBairro());
+		pessoa.setCelular1(pessoaDTO.getCelular1());
+		pessoa.setCelular2(pessoaDTO.getCelular2());
+		pessoa.setCep(pessoaDTO.getCep());
+		pessoa.setComplemento(pessoaDTO.getComplemento());
+		pessoa.setCpf(pessoaDTO.getCpf());
+		pessoa.setDataNascimento(pessoaDTO.getDataNascimento());
+		pessoa.setFoto(pessoaDTO.getFoto());
+		pessoa.setNome(pessoaDTO.getNome());
+		pessoa.setNumero(pessoaDTO.getNumero());
+		pessoa.setRua(pessoaDTO.getRua());
+		pessoa.setSobrenome(pessoaDTO.getSobrenome());
+		pessoa.setTelefone1(pessoaDTO.getTelefone1());
+		pessoa.setTelefone2(pessoaDTO.getTelefone2());
+		
+		Cidade cidade = new Cidade().converterCidadeDTO(pessoaDTO.getCidade());
+		pessoa.setCidade(cidade);
+	          
+	      return pessoa;
+	  }
 
 }

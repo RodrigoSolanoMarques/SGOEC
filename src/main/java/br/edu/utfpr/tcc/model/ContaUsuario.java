@@ -20,62 +20,63 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import br.edu.utfpr.tcc.dto.ContaUsuarioDTO;
+import br.edu.utfpr.tcc.dto.PessoaDTO;
 import lombok.Data;
 
 @Entity
 @Data
-public class ContaUsuario implements UserDetails{
+public class ContaUsuario implements UserDetails {
 	private static final long serialVersionUID = 1L;
-	
-	private static final BCryptPasswordEncoder bCry = 
-			new BCryptPasswordEncoder();
-	
+
+	private static final BCryptPasswordEncoder bCry = new BCryptPasswordEncoder();
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(length=255, nullable=false)
+
+	@Column(length = 255, nullable = false)
 	private String username;
-	
-	@Column(length=255, nullable=false)
+
+	@Column(length = 255, nullable = false)
 	private String senha;
-	
-	@Column(length=255, nullable=false)
+
+	@Column(length = 255, nullable = false)
 	private String email;
-	
-	@Column(length=255, nullable=true)
+
+	@Column(length = 255, nullable = true)
 	private String pathImagem;
-	
-	@ManyToMany(cascade = CascadeType.ALL, 
-			fetch = FetchType.EAGER)
+
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Permissao> permissoes;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> auto = new ArrayList<>();
 		auto.addAll(getPermissoes());
-		
+
 		return auto;
 	}
 
-	public void addPermissao(Permissao permissao){
-		if (permissoes == null){
+	public void addPermissao(Permissao permissao) {
+		if (permissoes == null) {
 			permissoes = new HashSet<>();
 		}
 		permissoes.add(permissao);
 	}
-	
-	public String getEncodedPassword(String pass){
-		if (StringUtils.isNotEmpty(pass)){
+
+	public String getEncodedPassword(String pass) {
+		if (StringUtils.isNotEmpty(pass)) {
 			return bCry.encode(pass);
 		}
 		return pass;
 	}
+
 	@Override
 	public String getPassword() {
 		return this.senha;
 	}
-	
+
 	@Override
 	public String getUsername() {
 		return this.username;
@@ -104,10 +105,16 @@ public class ContaUsuario implements UserDetails{
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
-	
-	
-	
-	
-	
+
+	public ContaUsuario converterContaUsuarioDTO(ContaUsuarioDTO contaUsuarioDTO) {
+
+		ContaUsuario contaUsuario = new ContaUsuario();
+		contaUsuario.setId(contaUsuarioDTO.getId());
+		contaUsuario.setEmail(contaUsuarioDTO.getEmail());
+		contaUsuario.setPathImagem(contaUsuarioDTO.getPathImagem());
+		contaUsuario.setUsername(contaUsuarioDTO.getUsername());
+		contaUsuario.setSenha(contaUsuarioDTO.getSenha());
+
+		return contaUsuario;
+	}
 }

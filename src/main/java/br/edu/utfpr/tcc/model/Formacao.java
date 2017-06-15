@@ -2,19 +2,16 @@ package br.edu.utfpr.tcc.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.edu.utfpr.tcc.dto.FormacaoDTO;
 import lombok.Data;
 
 @Entity
@@ -26,12 +23,8 @@ public class Formacao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable=true)
-	private Integer idMobile;
-	
-//	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "idCurriculo", referencedColumnName = "id")
-//	private Curriculo curriculo;
+//	@Column(nullable=true)
+//	private Integer idMobile;
 	
 	@Column(length=100, nullable=false)
 	private String nomeCurso;
@@ -39,7 +32,10 @@ public class Formacao {
 	@Column(length=100, nullable=false)
 	private String instituicao;
 	
-	@Column(nullable=false)
+	@Column(nullable=true)
+	private Integer periodo;
+	
+	@Column(nullable=true)
 	private Boolean isConcluido;
 	
 	@Temporal(TemporalType.DATE)
@@ -47,7 +43,21 @@ public class Formacao {
 	private Date dataInicial;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(nullable=false)
+	@Column(nullable=true)
 	private Date dataFinal;
+	
+  public Formacao converterFormacaoDTO(FormacaoDTO formacaoDTO) {
+
+	  Formacao formacao = new Formacao();
+      formacao.setId(formacaoDTO.getId());
+      formacao.setIsConcluido(formacaoDTO.getConcluido());
+      formacao.setDataFinal(formacaoDTO.getDataFinal());
+      formacao.setDataInicial(formacaoDTO.getDataInicial());
+      formacao.setInstituicao(formacaoDTO.getInstituicao());
+      formacao.setNomeCurso(formacaoDTO.getNomeCurso());
+      formacao.setPeriodo(formacaoDTO.getPeriodo());
+          
+      return formacao;
+  }
 	
 }

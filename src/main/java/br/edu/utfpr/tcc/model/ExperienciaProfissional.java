@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.edu.utfpr.tcc.dto.CursoComplementarDTO;
+import br.edu.utfpr.tcc.dto.ExperienciaProfissionalDTO;
 import lombok.Data;
 
 @Entity
@@ -22,12 +24,8 @@ public class ExperienciaProfissional {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable=true)
-	private Integer idMobile;
-	
-//	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "idCurriculo", referencedColumnName = "id")
-//	private Curriculo curriculo;
+//	@Column(nullable=true)
+//	private Integer idMobile;
 	
 	@Column(length=100, nullable=false)
 	private String nomeEmpresa;
@@ -48,5 +46,19 @@ public class ExperienciaProfissional {
 	
 	@Column(length=200, nullable=true)
 	private String atividades;
+	
+	public ExperienciaProfissional converterExperienciaProfissionalDTO(ExperienciaProfissionalDTO experienciaProfissionalDTO) {
 
+		ExperienciaProfissional experienciaProfissional = new ExperienciaProfissional();
+		
+		experienciaProfissional.setId(experienciaProfissionalDTO.getId());
+		experienciaProfissional.setNomeEmpresa(experienciaProfissionalDTO.getNomeEmpresa());
+		experienciaProfissional.setDataFinal(experienciaProfissionalDTO.getDataFinal());
+		experienciaProfissional.setDataInicial(experienciaProfissionalDTO.getDataInicial());
+		experienciaProfissional.setIsAtual(experienciaProfissionalDTO.getIsAtual());
+		experienciaProfissional.setAtividades(experienciaProfissionalDTO.getAtividades());
+		experienciaProfissional.setCargo(experienciaProfissionalDTO.getCargo());
+	          
+	    return experienciaProfissional;
+	  }
 }

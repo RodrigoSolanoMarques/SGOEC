@@ -57,7 +57,7 @@ public class EmpresaController {
 	
 	@GetMapping("/listar")
 	public List<Empresa> listar(){				
-		
+	
 		return empresaRepository.findAll();
 	}
 	

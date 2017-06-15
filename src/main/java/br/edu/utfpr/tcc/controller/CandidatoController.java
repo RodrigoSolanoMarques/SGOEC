@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.utfpr.tcc.enumerator.EStatusCurriculo;
 import br.edu.utfpr.tcc.model.AvaliacaoCurriculo;
-import br.edu.utfpr.tcc.model.Candidato;
 import br.edu.utfpr.tcc.model.Curriculo;
 import br.edu.utfpr.tcc.repository.AvaliacaoCurriculoRepository;
 import br.edu.utfpr.tcc.repository.CandidatoRepository;

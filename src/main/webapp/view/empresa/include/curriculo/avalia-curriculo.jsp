@@ -92,6 +92,17 @@
 												<i class="send icon"></i> Solicitar Currículo
 											</button>
 										</div>
+										
+										<div
+											class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+											
+											<hr />
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" onclick="">
+											<button id="btnSolicitarEntrevista" class="large fluid ui toggle teal button">
+												<i class="send icon"></i> Solicitar Entrevista
+											</button>
+										</div>
 
 									</div>
 

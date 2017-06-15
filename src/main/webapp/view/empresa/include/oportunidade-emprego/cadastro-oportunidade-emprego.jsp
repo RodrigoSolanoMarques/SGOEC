@@ -30,7 +30,7 @@
 								id="id" name="id" placeholder="" readonly="readonly" />
 						</div>
 						<div class="col-xs-9 col-sm-10 col-md-5 col-lg-5">
-							<label for="areaProfissional">Area Profissional</label> <select
+							<label for="areaProfissional">Área Profissional</label> <select
 								id="areaProfissional" class="form-control"
 								name="cargo.areaProfissional.id" data-toggle="tooltip"
 								data-placement="top" title="Escolha uma Area Profissional">
@@ -128,7 +128,7 @@
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div class="form-group">
-									<input id="isFinalizado" name="isFinalizado" type="checkbox" >
+									<input id="isFinalizado" name="isFinalizado" type="checkbox">
 									<label id="labelIsFinalizado" for="isFinalizado" style="color: blue;">Finalizar está Oportunidade
 										de Emprego?</label>
 								</div>

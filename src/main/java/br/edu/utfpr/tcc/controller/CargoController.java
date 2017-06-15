@@ -2,7 +2,6 @@ package br.edu.utfpr.tcc.controller;
 
 import java.util.List;
 
-import org.apache.hadoop.mapred.gethistory_jsp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,6 @@ import br.edu.utfpr.tcc.model.Cargo;
 import br.edu.utfpr.tcc.model.ContaUsuario;
 import br.edu.utfpr.tcc.model.Empregador;
 import br.edu.utfpr.tcc.model.Empresa;
-import br.edu.utfpr.tcc.model.Pessoa;
 import br.edu.utfpr.tcc.repository.AreaProfissionalRepository;
 import br.edu.utfpr.tcc.repository.CargoRepository;
 import br.edu.utfpr.tcc.repository.EmpregadorRepository;
