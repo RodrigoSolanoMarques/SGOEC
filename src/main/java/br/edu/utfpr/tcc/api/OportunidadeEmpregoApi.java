@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,9 +23,12 @@ public class OportunidadeEmpregoApi {
 		return oportunidadeEmpregoRepository.findAll();
 	}
 	
-	@GetMapping("/listarOportunidadeEmpregoByAreaProfissional")
-	public List<OportunidadeEmprego> listar(Long idAreaProfissional){
-		return oportunidadeEmpregoRepository.findByCargoAreaProfissionalId(idAreaProfissional);
+	@GetMapping("/listarOportunidadeEmpregoByAreaProfissional/{nome}")
+	public List<OportunidadeEmprego> listar(@PathVariable("nome") String areaProfissional){
+		if("Todos".equals(areaProfissional)){
+			return oportunidadeEmpregoRepository.findAll();
+		}
+		return oportunidadeEmpregoRepository.findByIsFinalizadoFalseAndCargoAreaProfissionalNomeLike(areaProfissional);
 	}
 	
 }

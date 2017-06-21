@@ -92,9 +92,10 @@ public class Pessoa {
 		pessoa.setTelefone1(pessoaDTO.getTelefone1());
 		pessoa.setTelefone2(pessoaDTO.getTelefone2());
 		
-		Cidade cidade = new Cidade().converterCidadeDTO(pessoaDTO.getCidade());
-		pessoa.setCidade(cidade);
-	          
+		if(pessoaDTO.getCidade() != null){
+			Cidade cidade = new Cidade().converterCidadeDTO(pessoaDTO.getCidade());
+			pessoa.setCidade(cidade);
+		}
 	      return pessoa;
 	  }
 

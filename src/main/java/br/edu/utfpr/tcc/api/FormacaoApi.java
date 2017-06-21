@@ -3,7 +3,6 @@ package br.edu.utfpr.tcc.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,7 @@ public class FormacaoApi {
 	FormacaoRepository formacaoRepository;
 	
 	@PostMapping("/salvar")
-	public List<FormacaoDTO> salve(@RequestBody List<FormacaoDTO> formacaoDTOs){
+	public List<FormacaoDTO> salvar(@RequestBody List<FormacaoDTO> formacaoDTOs){
 		
 		for(FormacaoDTO formacaoX : formacaoDTOs){
 			

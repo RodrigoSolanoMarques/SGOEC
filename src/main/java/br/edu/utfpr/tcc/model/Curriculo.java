@@ -76,7 +76,9 @@ public class Curriculo {
 		curriculo.setConhecimentosGerais(curriculoDTO.getConhecimentosGerais());
 		curriculo.setConhecimentosInformatica(curriculoDTO.getConhecimentosInformatica());
 
-		Candidato candidato = new Candidato().converterCandidatoDTO(curriculoDTO.getCandidato());
+//		Candidato candidato = new Candidato().converterCandidatoDTO(curriculoDTO.getCandidato());
+		Candidato candidato = new Candidato();
+		candidato.setId(curriculoDTO.getCandidato().getId());
 		curriculo.setCandidato(candidato);
 
 		Set<CursoComplementar> cursoComplementars = new HashSet<>();

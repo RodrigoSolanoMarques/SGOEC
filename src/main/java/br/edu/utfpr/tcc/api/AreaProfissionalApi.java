@@ -21,5 +21,14 @@ public class AreaProfissionalApi {
 	public List<AreaProfissional> listarAreaProfissional(){		
 		return areaProfissionalRepository.findAll();
 	}
+	
+	@GetMapping("/nome")
+	public List<AreaProfissional> findByNome(String nome){		
+		if("Todos".equals(nome)){
+			return areaProfissionalRepository.findAll();
+		}
+		
+		return areaProfissionalRepository.findByNome(nome);
+	}
 
 }

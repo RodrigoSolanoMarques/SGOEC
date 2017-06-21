@@ -8,6 +8,6 @@ import br.edu.utfpr.tcc.model.OportunidadeEmprego;
 
 public interface OportunidadeEmpregoRepository extends JpaRepository<OportunidadeEmprego, Long> {
 	
-	public List<OportunidadeEmprego> findByCargoAreaProfissionalId(Long idAreaProfissional);
+	public List<OportunidadeEmprego> findByIsFinalizadoFalseAndCargoAreaProfissionalNomeLike(String idAreaProfissional);
 
 }

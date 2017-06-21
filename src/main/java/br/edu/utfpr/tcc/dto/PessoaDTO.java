@@ -2,6 +2,8 @@ package br.edu.utfpr.tcc.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class PessoaDTO {
 
     private Long _id;
@@ -10,6 +12,7 @@ public class PessoaDTO {
     private String nome;
     private String sobrenome;
     private String cpf;
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date dataNascimento;
     private String telefone1;
     private String telefone2;
