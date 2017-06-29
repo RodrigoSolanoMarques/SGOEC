@@ -11,6 +11,9 @@ var curriculo = {
 	$btnListaCandidatosFavoritos: $('#btnListaCandidatosFavoritos'),
 	$btnListaEspera: $('#btnListaEspera'),
 	$btnSolicitarCurriculo: $('#btnSolicitarCurriculo'),
+	$pdfIdAvaliacaoCurriculo: $('#pdfIdAvaliacaoCurriculo'),
+	$pdfSemCurriculo: $('#pdfSemCurriculo'),
+	$btnPdfAbrirCurriculo: $('#btnPdfAbrirCurriculo'),
 	
 	carregarAvaliacaoCurriculo: function(avaliacaoCurriculo){
 		showCarregando();

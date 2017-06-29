@@ -26,6 +26,9 @@ public class CurriculoApi {
 		for(CurriculoDTO curriculoX : curriculoDTOs){
 			
 			Curriculo curriculo = new Curriculo().converterCurriculoDTO(curriculoX);
+			
+			
+			
 			curriculo = curriculoRepository.save(curriculo);
 			
 			curriculoX.setId(curriculo.getId());

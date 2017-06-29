@@ -23,8 +23,13 @@ var ajaxCurriculo = {
 			
 			if(avaliaCurriculo.curriculo != null){
 				curriculo.hideBtnSolicitarCurriculo(true);
+				curriculo.$pdfIdAvaliacaoCurriculo.val(avaliaCurriculo.id);
+				curriculo.$btnPdfAbrirCurriculo.show();
+				curriculo.$pdfSemCurriculo.hide();
 			}else{
 				curriculo.hideBtnSolicitarCurriculo(false);
+				curriculo.$btnPdfAbrirCurriculo.hide();
+				curriculo.$pdfSemCurriculo.show();
 			}
 		}
 		
@@ -35,6 +40,7 @@ var ajaxCurriculo = {
 		hideCarregando();
 
 	},
+	
 	btnAprovar: function(idAvaliacaoCurriculo){
 		$.post("/empresa/avaliacaoCurriculo/aprovar", {idAvaliacaoCurriculo: idAvaliacaoCurriculo}, function(data){
 			curriculo.hideBtnAprovarBtnDispensar(true);

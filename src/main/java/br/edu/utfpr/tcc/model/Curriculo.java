@@ -42,7 +42,7 @@ public class Curriculo {
 			@JoinColumn(name = "idFormacao") })
 	private Set<Formacao> formacoes;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name = "CurriculoCursoComplementar", joinColumns = {
 			@JoinColumn(name = "idCurriculo") }, inverseJoinColumns = { @JoinColumn(name = "idCursoComplementar") })
 	private Set<CursoComplementar> cursoComplementares;

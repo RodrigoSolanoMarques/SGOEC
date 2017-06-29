@@ -113,8 +113,17 @@
 						<div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
 							<div class="panel panel-default">
 								<div class="panel-heading text-center">Currículo</div>
-								<div class="panel-body text-center">Sem Currículo</div>
-<!-- 								<iframe src="/empresa/curriculo/curriculoCanditadoPdf" width="600" height="780" style="border: none;"></iframe> -->
+								<div id="pdfSemCurriculo" class="panel-body text-center">Sem Currículo</div>
+ 								
+ 								<form action="/empresa/curriculo/curriculoCanditadoPdf" method="post" class="panel-body text-center">
+								    <div>
+								        <input id="pdfIdAvaliacaoCurriculo" type="number" name="idAvaliacaoCurriculo" style="display: none" />
+								    </div>
+								    <div class="button">
+								        <button id="btnPdfAbrirCurriculo" class="btn btn-default" type="submit">Abrir Currículo</button>
+								    </div>
+								</form>
+ 								
 							</div>
 
 						</div>
@@ -123,7 +132,7 @@
 				</div>
 			</div>
 			<div class="modal-footer text-right">
-				<button id="btnModalFormSalvarCargo" type="button" class="btn btn-default" onclick="curriculo.modalHideAvaliarCurriculo()">Fechar</button>
+					<button id="btnModalFormSalvarCargo" type="button" class="btn btn-default" onclick="curriculo.modalHideAvaliarCurriculo()">Fechar</button>
 			</div>
 		</div>
 	</div>

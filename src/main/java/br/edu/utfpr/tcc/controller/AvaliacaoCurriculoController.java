@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,7 +33,7 @@ public class AvaliacaoCurriculoController {
 		avaliacaoCurriculo.setCurriculo(new Curriculo(idCurriculo));
 		avaliacaoCurriculo.setOportunidadeEmprego(new OportunidadeEmprego(idOportunidadeEmprego));
 		avaliacaoCurriculo.setDataCurriculoEnviado(new Date());
-		avaliacaoCurriculo.setStatus(EStatusCurriculo.AGUARDANDOAVALIACAO);
+		avaliacaoCurriculo.setStatus(EStatusCurriculo.AGUARDANDO_AVALIACAO);
 	
 		return avaliacaoCurriculoRepository.save(avaliacaoCurriculo);
 	}
@@ -61,7 +60,7 @@ public class AvaliacaoCurriculoController {
 	public void favoritar(@RequestParam(name = "idAvaliacaoCurriculo", required = true)Long idAvaliacaoCurriculo){		
 		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoRepository.findOne(idAvaliacaoCurriculo);
 		avaliacaoCurriculo.setFavorito(true);
-		avaliacaoCurriculo.setStatus(EStatusCurriculo.LISTAFAVORITOS);
+		avaliacaoCurriculo.setStatus(EStatusCurriculo.LISTA_DE_FAVORITOS);
 		avaliacaoCurriculoRepository.save(avaliacaoCurriculo);
 	}
 	
@@ -70,7 +69,7 @@ public class AvaliacaoCurriculoController {
 			@RequestParam(name = "dataEntrevista", required = true)Date dataEntrevista){		
 		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoRepository.findOne(idAvaliacaoCurriculo);
 		avaliacaoCurriculo.setDataEntrevista(dataEntrevista);
-		avaliacaoCurriculo.setStatus(EStatusCurriculo.ENTREVISTAMARCADA);
+		avaliacaoCurriculo.setStatus(EStatusCurriculo.ENTREVISTA_MARCADA);
 		avaliacaoCurriculoRepository.save(avaliacaoCurriculo);
 	}
 	
@@ -92,7 +91,7 @@ public class AvaliacaoCurriculoController {
 	@PostMapping("/listaEspera")
 	public void listaEspera(@RequestParam(name = "idAvaliacaoCurriculo", required = true)Long idAvaliacaoCurriculo){		
 		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoRepository.findOne(idAvaliacaoCurriculo);
-		avaliacaoCurriculo.setStatus(EStatusCurriculo.LISTAESPERA);
+		avaliacaoCurriculo.setStatus(EStatusCurriculo.LISTA_ESPERA);
 		avaliacaoCurriculo.setFavorito(false);
 		avaliacaoCurriculoRepository.save(avaliacaoCurriculo);
 	}
@@ -100,7 +99,7 @@ public class AvaliacaoCurriculoController {
 	@PostMapping("/solicitarCurriculo")
 	public void solicitarCurriculo(@RequestParam(name = "idAvaliacaoCurriculo", required = true)Long idAvaliacaoCurriculo){		
 		AvaliacaoCurriculo avaliacaoCurriculo = avaliacaoCurriculoRepository.findOne(idAvaliacaoCurriculo);
-		avaliacaoCurriculo.setStatus(EStatusCurriculo.SOLICITOUCURRICULO);
+		avaliacaoCurriculo.setStatus(EStatusCurriculo.SOLICITOU_CURRICULO);
 		avaliacaoCurriculoRepository.save(avaliacaoCurriculo);
 	}
 }
